@@ -47,5 +47,12 @@ public interface Const {
      */
     String HEX_STR = "0123456789ABCDEF";
 
+    /**
+     * 文件后缀
+     */
+    String EXCEL_XLS = ".xls";
+
+    String EXCEL_XLSX = ".xlsx";
+
 
 }

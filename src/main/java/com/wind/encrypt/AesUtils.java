@@ -88,7 +88,12 @@ public class AesUtils {
     }
 
     public static void main(String[] args) {
+        String str = "hello world";
+        String key = "123";
+        byte[] bytes = encrypt(str, key);
 
+        String s = decrypt(bytes, key);
+        System.out.println(s);
     }
 
 }
