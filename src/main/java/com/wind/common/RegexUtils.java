@@ -55,6 +55,11 @@ public class RegexUtils {
     }
 
 
+    public static boolean isNumber(String value){
+        Pattern pattern = Pattern.compile(Const.NUMBER);
+        return pattern.matcher(value).matches();
+    }
+
     /**
      * 判断是否为浮点数
      * @param value

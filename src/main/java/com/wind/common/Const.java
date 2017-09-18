@@ -50,9 +50,13 @@ public interface Const {
     /**
      * 文件后缀
      */
-    String EXCEL_XLS = ".xls";
+    String EXCEL_XLS = "xls";
 
-    String EXCEL_XLSX = ".xlsx";
+    String EXCEL_XLSX = "xlsx";
+
+    String IMAGE_PNG = "png";
+
+    String IMAGE_JPG = "jpg";
 
 
 }
