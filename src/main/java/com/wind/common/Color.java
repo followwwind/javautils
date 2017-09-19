@@ -1,7 +1,7 @@
 package com.wind.common;
 
 /**
- * 颜色参照表
+ * RGB颜色参照表
  */
 public interface Color {
     int GRAY = 11184810;

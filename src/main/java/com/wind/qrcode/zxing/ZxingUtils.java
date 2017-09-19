@@ -117,6 +117,8 @@ public class ZxingUtils {
                     codeImage.setRGB(x, y, matrix.get(x, y) ? Color.BLACK : Color.WHITE);
                 }
             }
+
+
             Graphics2D g = codeImage.createGraphics();
             /**
              * 读取Logo图片
