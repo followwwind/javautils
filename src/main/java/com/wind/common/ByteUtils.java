@@ -54,6 +54,9 @@ public class ByteUtils {
 
 
     public static void main(String[] args) {
+        //1111 1 + 2 + 4 + 8
+        System.out.println(0xf);
+
 
     }
 
