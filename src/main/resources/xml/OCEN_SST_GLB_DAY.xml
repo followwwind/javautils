@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<MDXML>
+<metadata xmlns="http://qx.sciencedata.cn" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <mdLang>简体中文</mdLang>
+  <mdChar>Gb2312</mdChar>
+  <mdDateSt>2008-01-01</mdDateSt>
+  <MdContact>
+    <rpOrgName>国家气象信息中心</rpOrgName>
+    <role>管理者</role>
+  </MdContact>
+  <Ident>
+    <title>全球海平面气温资料数据集</title>
+    <dsID>OCEN_SST_GLB_DAY</dsID>
+    <idabs>数据集为英国HADLEY中心制作的全球1871－1994年海面温度数据。</idabs>
+    <tpCat>OCEN</tpCat>
+    <mainFreq>不更新</mainFreq>
+    <DescKeys>
+      <keywords>全球</keywords>
+      <keyType>地理范围</keyType>
+    </DescKeys>
+    <DescKeys>
+      <keywords>海平面</keywords>
+      <keyType>层次</keyType>
+    </DescKeys>
+    <DescKeys>
+      <keywords>海洋，海平面气温，海面气温，气温</keywords>
+      <keyType>学科分类</keyType>
+    </DescKeys>
+    <dataScal>数据排列(360x180)第一项(1,1)为中心在（179.5W，89.5N）的1度区域内的值
+最后一项(360,180)为中心在（179.5E，89.5S）的1度区域内的值</dataScal>
+    <ResRefDate>
+      <refDate>2009-01-12</refDate>
+      <refDateType>生产</refDateType>
+    </ResRefDate>
+    <GeoEle>
+      <geoDesc>全球</geoDesc>
+      <GeoBndBox>
+        <westBL>180.00W</westBL>
+        <eastBL>180.00E</eastBL>
+        <southBL>90.00S</southBL>
+        <northBL>90.00N</northBL>
+      </GeoBndBox>
+    </GeoEle>
+    <TempEle>
+      <begin>1871-01-01</begin>
+      <end>1994-12-31</end>
+      <obsFreq>每天</obsFreq>
+    </TempEle>
+    <Consts>
+      <LegConsts>
+        <accessConsts>2</accessConsts>
+      </LegConsts>
+    </Consts>
+    <IdPoC>
+      <rpOrgName>国家气象信息中心</rpOrgName>
+      <role>数据资源提供者</role>
+    </IdPoC>
+  </Ident>
+  <DataQual>
+    <statement>质量状况良好。</statement>
+    <source>英国HADLEY中心</source>
+  </DataQual>
+</metadata>
+</MDXML>
