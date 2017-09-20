@@ -3,7 +3,7 @@ package com.wind.common;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
-import java.util.UUID;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicLong;
 
 /**
@@ -54,6 +54,25 @@ public class StringUtils {
         return s;
     }
 
+
+    /**
+     * 字符串分隔 StringTokenizer效率是三种分隔方法中最快的
+     * @param str
+     * @param sign
+     * @return
+     */
+    public static String[] split(String str, String sign){
+        StringTokenizer token = new StringTokenizer(str,sign);
+        String[] strArr = new String[token.countTokens()];
+        int i = 0;
+        while(token.hasMoreElements()){
+            strArr[i] = token.nextElement().toString();
+            i++;
+//            System.out.println(token.nextElement());
+        }
+        return strArr;
+    }
+
     /**
      * url解码
      * @param str
@@ -73,7 +92,9 @@ public class StringUtils {
 
 
     public static void main(String[] args) {
-        System.out.println(getUUID());
+        String orginStr = "www.baidu.com";
+        String[] strArr = split(orginStr, ".");
+        System.out.println(Arrays.asList(strArr));
     }
 
 }

@@ -2,6 +2,8 @@ package com.wind.common;
 
 public interface Const {
 
+    String POINT_STR = ".";
+
     /**
      * 日期常量
      */
@@ -50,13 +52,22 @@ public interface Const {
     /**
      * 文件后缀
      */
-    String EXCEL_XLS = "xls";
+    String EXCEL_XLS = ".xls";
 
-    String EXCEL_XLSX = "xlsx";
+    String EXCEL_XLSX = ".xlsx";
 
     String IMAGE_PNG = "png";
 
     String IMAGE_JPG = "jpg";
+
+    String FILE_ZIP = ".zip";
+    String FILE_GZ = ".gz";
+
+
+    /**
+     * io流
+     */
+    int BUFFER_1024 = 1024;
 
 
 }
