@@ -2,9 +2,7 @@ package com.wind.common;
 
 import org.dom4j.io.XMLWriter;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
 import java.util.Arrays;
 
 /**
@@ -12,7 +10,7 @@ import java.util.Arrays;
  */
 public class IOUtils {
     /**
-     * 关闭输入流
+     * 关闭字节输入流
      * @param in
      */
     public static void close(InputStream in){
@@ -27,7 +25,7 @@ public class IOUtils {
 
 
     /**
-     * 关闭输入输出流
+     * 关闭字节输入输出流
      * @param in
      * @param out
      */
@@ -37,7 +35,35 @@ public class IOUtils {
     }
 
     /**
-     * 批量关闭输入流
+     * 关闭字符输入流
+     * @param reader
+     */
+    public static void close(Reader reader){
+        if(reader != null){
+            try {
+                reader.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    /**
+     * 关闭字符输出流
+     * @param writer
+     */
+    public static void close(Writer writer){
+        if(writer != null){
+            try {
+                writer.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    /**
+     * 批量关闭字节输入流
      * @param ins
      */
     public static void close(InputStream... ins){
@@ -45,7 +71,7 @@ public class IOUtils {
     }
 
     /**
-     * 批量关闭输出流
+     * 批量关闭字节输出流
      * @param outs
      */
     public static void close(OutputStream... outs){
@@ -68,7 +94,7 @@ public class IOUtils {
 
 
     /**
-     * 关闭输出流
+     * 关闭字节输出流
      * @param out
      */
     public static void close(OutputStream out){
@@ -81,6 +107,10 @@ public class IOUtils {
         }
     }
 
+    /**
+     * 关闭XMLWriter输出流
+     * @param out
+     */
     public static void close(XMLWriter out){
         if(out != null){
             try {

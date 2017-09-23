@@ -62,6 +62,9 @@ public class StringUtils {
      * @return
      */
     public static String[] split(String str, String sign){
+        if(str == null){
+            return new String[]{};
+        }
         StringTokenizer token = new StringTokenizer(str,sign);
         String[] strArr = new String[token.countTokens()];
         int i = 0;
@@ -92,7 +95,7 @@ public class StringUtils {
 
 
     public static void main(String[] args) {
-        String orginStr = "www.baidu.com";
+        String orginStr = null;
         String[] strArr = split(orginStr, ".");
         System.out.println(Arrays.asList(strArr));
     }

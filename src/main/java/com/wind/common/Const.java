@@ -1,15 +1,33 @@
 package com.wind.common;
 
+import java.io.File;
+
 public interface Const {
 
     String POINT_STR = ".";
 
+    String BLANK_STR = "";
+
+    String SPACE_STR = " ";
+
+    String SYS_SEPARATOR = File.separator;
+
+    String FILE_SEPARATOR = "/";
+
     /**
-     * 日期常量
+     * 日期时间常量
      */
     String DATE_TIME = "yyyy-MM-dd HH:mm:ss";
 
     String DATE_STR = "yyyy-MM-dd";
+
+    int SECOND = 1000;
+
+    int MINUTE = 60 * SECOND;
+
+    int HOUR = 60 * MINUTE;
+
+    int DAY = 24 * HOUR;
 
     /**
      * 编码格式
@@ -68,6 +86,8 @@ public interface Const {
      * io流
      */
     int BUFFER_1024 = 1024;
+
+    String USER_DIR = "user.dir";
 
 
 }

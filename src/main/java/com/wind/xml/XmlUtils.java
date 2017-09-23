@@ -14,6 +14,10 @@ import java.util.List;
  */
 public class XmlUtils {
 
+    /**
+     * dom解析xml文件
+     * @param filePath
+     */
     public static void parseXml(String filePath){
         //创建SAXReader对象
         SAXReader reader = new SAXReader();
@@ -59,6 +63,10 @@ public class XmlUtils {
         }
     }
 
+    /**
+     * sax解析xml配置文件
+     * @param filePath
+     */
     public static void parseHandler(String filePath){
         //创建SAXReader对象
         SAXReader reader = new SAXReader();
