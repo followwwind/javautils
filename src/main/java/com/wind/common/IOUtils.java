@@ -7,6 +7,7 @@ import java.util.Arrays;
 
 /**
  * IO流工具类
+ * @author wind
  */
 public class IOUtils {
     /**
@@ -67,7 +68,7 @@ public class IOUtils {
      * @param ins
      */
     public static void close(InputStream... ins){
-        batchClose(ins);
+        Arrays.asList(ins).parallelStream().forEach(in -> close(in));
     }
 
     /**
@@ -75,23 +76,8 @@ public class IOUtils {
      * @param outs
      */
     public static void close(OutputStream... outs){
-        batchClose(outs);
+        Arrays.asList(outs).parallelStream().forEach(out -> close(out));
     }
-
-
-    private static void batchClose(Object ... objs){
-        Arrays.asList(objs).parallelStream().forEach(obj -> {
-            if(obj instanceof InputStream){
-                InputStream in = (InputStream) obj;
-                close(in);
-            }else if(obj instanceof OutputStream){
-                OutputStream out = (OutputStream) obj;
-                close(out);
-            }
-
-        });
-    }
-
 
     /**
      * 关闭字节输出流

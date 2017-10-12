@@ -10,8 +10,6 @@
 
 
     <dependencies>
-
-
         <!-- commons-codec -->
         <!-- https://mvnrepository.com/artifact/commons-codec/commons-codec -->
         <dependency>
@@ -76,6 +74,14 @@
             <version>1.6.1</version>
         </dependency>
         <!-- xml -->
+
+        <!-- https://mvnrepository.com/artifact/net.sourceforge.tess4j/tess4j -->
+        <dependency>
+            <groupId>net.sourceforge.tess4j</groupId>
+            <artifactId>tess4j</artifactId>
+            <version>3.2.1</version>
+        </dependency>
+
 
     </dependencies>
 

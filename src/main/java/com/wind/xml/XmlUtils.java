@@ -71,12 +71,18 @@ public class XmlUtils {
         //创建SAXReader对象
         SAXReader reader = new SAXReader();
         reader.setDefaultHandler(new ElementHandler(){
-            public void onEnd(ElementPath ep) {
-                Element e = ep.getCurrent(); //获得当前节点
+
+            @Override
+            public void onStart(ElementPath elementPath) {
+
+            }
+
+            @Override
+            public void onEnd(ElementPath elementPath) {
+                //获得当前节点
+                Element e = elementPath.getCurrent();
                 System.out.println(e.getName());
                 e.detach(); //记得从内存中移去
-            }
-            public void onStart(ElementPath arg0) {
             }
         });
         try {

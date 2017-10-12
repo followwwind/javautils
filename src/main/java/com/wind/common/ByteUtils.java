@@ -2,6 +2,7 @@ package com.wind.common;
 
 /**
  * 字节工具类
+ * @author wind
  */
 public class ByteUtils {
 
