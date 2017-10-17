@@ -14,22 +14,25 @@ import java.io.File;
  * 工具类
  * @author wind
  */
-public class Tess4JUtils {
+public class Tess4jUtils {
     /**
      * 从图片中提取文字,默认设置英文字库,使用classpath目录下的训练库
      * @param path
      * @return
      */
     public static String readChar(String path){
-        ITesseract instance = new Tesseract();  // JNA Interface Mapping
-        // ITesseract instance = new Tesseract1(); // JNA Direct Mapping
+        // JNA Interface Mapping
+        ITesseract instance = new Tesseract();
+        // JNA Direct Mapping
+        // ITesseract instance = new Tesseract1();
         File imageFile = new File(path);
         //In case you don't have your own tessdata, let it also be extracted for you
         //这样就能使用classpath目录下的训练库了
         File tessDataFolder = LoadLibs.extractTessResources("tessdata");
         //Set the tessdata path
         instance.setDatapath(tessDataFolder.getAbsolutePath());
-        instance.setLanguage(Const.ENG);//英文库识别数字比较准确
+        //英文库识别数字比较准确
+        instance.setLanguage(Const.ENG);
         return getOCRText(instance, imageFile);
     }
 
@@ -42,9 +45,10 @@ public class Tess4JUtils {
      */
     public static String readChar(String path, String dataPath, String language){
         File imageFile = new File(path);
-        ITesseract instance = new Tesseract();  // JNA Interface Mapping
+        ITesseract instance = new Tesseract();
         instance.setDatapath(dataPath);
-        instance.setLanguage(language);//英文库识别数字比较准确
+        //英文库识别数字比较准确
+        instance.setLanguage(language);
         return getOCRText(instance, imageFile);
     }
 

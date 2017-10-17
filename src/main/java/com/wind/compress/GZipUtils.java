@@ -9,7 +9,7 @@ import java.util.zip.GZIPOutputStream;
 
 /**
  * GZIP压缩工具类
- *
+ * @author  wind
  */
 public class GZipUtils {
 
@@ -79,7 +79,7 @@ public class GZipUtils {
         try {
             gos = new GZIPOutputStream(out);
             int count;
-            byte data[] = new byte[Const.BUFFER_1024];
+            byte[] data = new byte[Const.BUFFER_1024];
             while ((count = in.read(data, 0, data.length)) != -1) {
                 gos.write(data, 0, count);
             }
@@ -103,7 +103,7 @@ public class GZipUtils {
         try {
             gis = new GZIPInputStream(in);
             int count;
-            byte data[] = new byte[Const.BUFFER_1024];
+            byte[] data = new byte[Const.BUFFER_1024];
             while ((count = gis.read(data, 0, Const.BUFFER_1024)) != -1) {
                 out.write(data, 0, count);
             }

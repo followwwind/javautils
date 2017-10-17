@@ -111,8 +111,9 @@ public class ZipUtils {
                     byte[] buffer = new byte[Const.BUFFER_1024];
                     while (true) {
                         int len = zis.read(buffer);
-                        if(len == -1)
+                        if(len == -1){
                             break;
+                        }
                         bos.write(buffer, 0, len);
                     }
                     bos.flush();

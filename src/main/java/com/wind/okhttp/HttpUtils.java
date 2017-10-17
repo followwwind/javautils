@@ -6,6 +6,7 @@ import java.io.IOException;
 
 /**
  * http请求工具类
+ * @author wind
  */
 public class HttpUtils {
 

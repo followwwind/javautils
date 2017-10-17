@@ -8,6 +8,7 @@ import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * 字符串工具类
+ * @author wind
  */
 public class StringUtils {
 

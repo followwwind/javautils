@@ -73,15 +73,16 @@ public class XSSFUtils {
             this.sst = sst;
         }
 
+        @Override
         public void startElement(String uri, String localName, String name,
                                  Attributes attributes) throws SAXException {
             // c => cell
-            if(name.equals("c")) {
+            if("c".equals(name)) {
                 // Print the cell reference
                 System.out.print(attributes.getValue("r") + " - ");
                 // Figure out if the value is an index in the SST
                 String cellType = attributes.getValue("t");
-                if(cellType != null && cellType.equals("s")) {
+                if(cellType != null && "s".equals(cellType)) {
                     nextIsString = true;
                 } else {
                     nextIsString = false;
@@ -91,6 +92,7 @@ public class XSSFUtils {
             lastContents = "";
         }
 
+        @Override
         public void endElement(String uri, String localName, String name)
                 throws SAXException {
             // Process the last contents as required.
@@ -103,11 +105,12 @@ public class XSSFUtils {
 
             // v => contents of a cell
             // Output after we've seen the string contents
-            if(name.equals("v")) {
+            if("v".equals(name)) {
                 System.out.println(lastContents);
             }
         }
 
+        @Override
         public void characters(char[] ch, int start, int length)
                 throws SAXException {
             lastContents += new String(ch, start, length);

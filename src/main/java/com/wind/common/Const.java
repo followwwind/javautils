@@ -20,6 +20,10 @@ public interface Const {
 
     String FILE_SEPARATOR = "/";
 
+    String BRACKET_LEFT = "[";
+
+    String BRACKET_RIGHT = "]";
+
     /**********************************************日期时间常量************************************************/
 
     String DATE_TIME = "yyyy-MM-dd HH:mm:ss";

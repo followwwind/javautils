@@ -15,6 +15,8 @@ import javax.imageio.ImageReadParam;
 import javax.imageio.ImageReader;
 import javax.imageio.stream.FileImageInputStream;
 import javax.imageio.stream.ImageInputStream;
+
+import com.wind.common.Const;
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfRect;
@@ -27,10 +29,16 @@ import org.opencv.objdetect.CascadeClassifier;
 
 /**
  * opencv图像处理工具类
+ * @author wind
  */
 public class ImageUtils {
+
+    static {
+        System.loadLibrary("libs/x64/opencv_java246");
+    }
+
     /**
-     * 获取图片的宽高
+     * 读取图片，获取BufferedImage对象
      * @param fileName
      * @return
      */
@@ -49,16 +57,14 @@ public class ImageUtils {
 
     /**
      * 获取人脸范围
-     * @param imageFileName
+     * @param fileName
      * @return
      */
-    public static int[] detectFace(String imageFileName) {
-
-        int[] RectPosition = new int[4];
+    public static MatOfRect detectFace(String fileName) {
 
         CascadeClassifier faceDetector = new CascadeClassifier("libs/lbpcascade_frontalface.xml");
 
-        Mat image = Highgui.imread(imageFileName);
+        Mat image = Highgui.imread(fileName);
 
         MatOfRect faceDetections = new MatOfRect();
 
@@ -69,30 +75,28 @@ public class ImageUtils {
         Size maxSize = new Size(250, 250);
 
         // 参数设置为scaleFactor=1.1f, minNeighbors=4, flags=0 以此来增加识别人脸的正确率
-
         faceDetector.detectMultiScale(image, faceDetections, 1.1f, 4, 0,
                 minSize, maxSize);
 
         // 对识别出来的头像画个方框，并且返回这个方框的位置坐标和大小
-
-        for (Rect rect : faceDetections.toArray()) {
+        /*for (Rect rect : faceDetections.toArray()) {
 
             Core.rectangle(image, new Point(rect.x, rect.y), new Point(rect.x
 
                     + rect.width, rect.y + rect.height), new Scalar(0, 255, 0));
 
-            RectPosition[0] = rect.x;
+            rectPosition[0] = rect.x;
 
-            RectPosition[1] = rect.y;
+            rectPosition[1] = rect.y;
 
-            RectPosition[2] = rect.width;
+            rectPosition[2] = rect.width;
 
-            RectPosition[3] = rect.height;
+            rectPosition[3] = rect.height;
 
             System.out.println(rect.x + " " + rect.y + " " + rect.width + " "
                     + rect.height);
 
-        }
+        }*/
 
         // 下面注释掉的三行可以用来生成识别出的人脸图像，保存下来以便Debug用
 
@@ -102,7 +106,7 @@ public class ImageUtils {
 
         // Highgui.imwrite(filename, image);
 
-        return RectPosition;
+        return faceDetections;
     }
 
 
@@ -115,19 +119,29 @@ public class ImageUtils {
      */
     public static void cutImage(File srcImg, File destImg, Rectangle rect) {
         if (srcImg.exists()) {
-            java.io.FileInputStream fis = null;
+            FileInputStream fis = null;
             ImageInputStream iis = null;
             OutputStream output = null;
             try {
+                String srcName = srcImg.getName();
+                boolean flag = false;
+                for(String str : ImageIO.getReaderFormatNames()){
+                    if(srcName.equalsIgnoreCase(Const.POINT_STR + str)){
+                        flag = true;
+                    }
+                }
+
+
                 fis = new FileInputStream(srcImg);
-                // ImageIO 支持的图片类型 : [BMP, bmp, jpg, JPG, wbmp, jpeg, png, PNG,
-                // JPEG, WBMP, GIF, gif]
+                //[JPG, jpg, tiff, pcx, PCX, bmp, BMP, gif, GIF, WBMP, png, PNG, raw, RAW, JPEG, pnm, PNM, tif, TIF, TIFF, wbmp, jpeg]
+
                 String types = Arrays.toString(ImageIO.getReaderFormatNames()).replace("]", ",");
                 String suffix = null;
                 // 获取图片后缀
                 if (srcImg.getName().indexOf(".") > -1) {
                     suffix = srcImg.getName().substring(srcImg.getName().lastIndexOf(".") + 1);
-                } // 类型和图片后缀全部小写，然后判断后缀是否合法
+                }
+                // 类型和图片后缀全部小写，然后判断后缀是否合法
                 if (suffix == null || types.toLowerCase().indexOf(suffix.toLowerCase() + ",") < 0) {
                     return;
                 }
@@ -147,12 +161,15 @@ public class ImageUtils {
                 e.printStackTrace();
             } finally {
                 try {
-                    if (fis != null)
+                    if (fis != null){
                         fis.close();
-                    if (iis != null)
+                    }
+                    if (iis != null){
                         iis.close();
-                    if (output != null)
+                    }
+                    if (output != null){
                         output.close();
+                    }
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -166,9 +183,9 @@ public class ImageUtils {
         cutImage(new File(srcImg), new File(destImg), new java.awt.Rectangle(x, y, width, height));
     } */
 
-    public static void main(String[] args) {
 
-        Double avatarSpacePer = 0.16;
+    public static  void aaa(){
+        /*Double avatarSpacePer = 0.16;
         Double avatarPer = 0.28;
         System.loadLibrary("libs/x64/opencv_java246");
         String filename = "img/idcard.jpg";
@@ -214,7 +231,16 @@ public class ImageUtils {
             cutY = cutY + 20;
         }
 
-        cutImage(new File(filename), new File(destFile), new java.awt.Rectangle(cutX, cutY, width, cutHeight));
+        cutImage(new File(filename), new File(destFile), new java.awt.Rectangle(cutX, cutY, width, cutHeight));*/
+    }
+
+    public static void main(String[] args) {
+        String fileName = "src/main/resources/image/idcard.jpg";
+        MatOfRect matRect = detectFace(fileName);
+        System.out.println(matRect.toArray().length);
+
+        System.out.println(Arrays.asList(ImageIO.getReaderFormatNames()));
+
     }
 }
 

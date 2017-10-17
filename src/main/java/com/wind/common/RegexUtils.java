@@ -4,6 +4,7 @@ import java.util.regex.Pattern;
 
 /**
  * 正则表达式工具类
+ * @author wind
  */
 public class RegexUtils {
 
@@ -14,21 +15,23 @@ public class RegexUtils {
      */
     public static boolean isEmail(String email){
         boolean flag = false;
-        if(email != null)
+        if(email != null){
             flag = email.matches(Const.EMAIL);
+        }
 
         return flag;
     }
 
     /**
      * 校验手机号码
-     * @param phonenum
+     * @param phoneNum
      * @return
      */
-    public static boolean isPhoneNum(String phonenum){
+    public static boolean isPhoneNum(String phoneNum){
         boolean flag = false;
-        if(phonenum != null)
-            flag = phonenum.matches(Const.PHONE_NUM);
+        if(phoneNum != null){
+            flag = phoneNum.matches(Const.PHONE_NUM);
+        }
         return flag;
     }
 
@@ -39,8 +42,9 @@ public class RegexUtils {
      */
     public static boolean isChinese(String chinese){
         boolean flag = false;
-        if(chinese != null)
+        if(chinese != null){
             flag = chinese.matches(Const.CHINESE);
+        }
         return flag;
     }
 
