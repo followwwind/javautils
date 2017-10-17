@@ -2,6 +2,7 @@ package com.wind.common;
 
 import org.dom4j.io.XMLWriter;
 
+import javax.imageio.stream.ImageInputStream;
 import java.io.*;
 import java.util.Arrays;
 
@@ -57,6 +58,20 @@ public class IOUtils {
         if(writer != null){
             try {
                 writer.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    /**
+     * 关闭image输入流
+     * @param iis
+     */
+    public static void close(ImageInputStream iis){
+        if(iis != null){
+            try {
+                iis.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }

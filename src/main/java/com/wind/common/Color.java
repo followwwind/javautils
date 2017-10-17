@@ -2,6 +2,7 @@ package com.wind.common;
 
 /**
  * RGB颜色参照表
+ * @author wind
  */
 public interface Color {
     int GRAY = 11184810;

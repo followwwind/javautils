@@ -10,6 +10,9 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.FileOutputStream;
 
+/**
+ * @author wind
+ */
 public class SXSSFUtils {
 
     public static void main(String[] args) throws Throwable {
@@ -19,7 +22,8 @@ public class SXSSFUtils {
 
     public static void test1() throws Throwable{
         long start = System.currentTimeMillis();
-        SXSSFWorkbook wb = new SXSSFWorkbook(100); // keep 100 rows in memory, exceeding rows will be flushed to disk
+        // keep 100 rows in memory, exceeding rows will be flushed to disk
+        SXSSFWorkbook wb = new SXSSFWorkbook(100);
         common(wb, "E:\\doc\\3.xlsx");
         wb.dispose();
 
@@ -30,7 +34,8 @@ public class SXSSFUtils {
 
     public static void test2() throws Throwable{
         long start = System.currentTimeMillis();
-        Workbook wb = new XSSFWorkbook(); // keep 100 rows in memory, exceeding rows will be flushed to disk
+        // keep 100 rows in memory, exceeding rows will be flushed to disk
+        Workbook wb = new XSSFWorkbook();
         common(wb, "E:\\doc\\2.xlsx");
         long end = System.currentTimeMillis();
         System.out.println(end - start);
