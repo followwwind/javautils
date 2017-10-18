@@ -1,7 +1,7 @@
 package com.wind.common;
 
 /**
- * RGB颜色参照表
+ * 十进制RGB颜色参照表
  * @author wind
  */
 public interface Color {
@@ -9,6 +9,10 @@ public interface Color {
     int LIGHTGRAY = 12303291;
     int DARKGRAY = 4473924;
     int BLACK = 0;
+    /**
+     * 十六进制值：#FFFFFF RGB值：255,255,255
+     *  十进制 16777215  15*(1 - 16^6)/(1 - 16) = 16^6 - 1 = 16777215(十六进制转十进制)
+     */
     int WHITE = 16777215;
     int BLUE = 8947967;
     int GREEN = 8978312;

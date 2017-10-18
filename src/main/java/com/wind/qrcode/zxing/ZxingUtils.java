@@ -111,7 +111,7 @@ public class ZxingUtils {
         }else{
             int width = matrix.getWidth();
             int height = matrix.getHeight();
-            BufferedImage codeImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);  ;
+            BufferedImage codeImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
             for (int x = 0; x < length; x++) {
                 for (int y = 0; y < length; y++) {
                     codeImage.setRGB(x, y, matrix.get(x, y) ? Color.BLACK : Color.WHITE);

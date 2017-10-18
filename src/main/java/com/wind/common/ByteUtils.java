@@ -50,6 +50,15 @@ public class ByteUtils {
         return bytes;
     }
 
+    /**
+     * 十六进制转十进制
+     * @param hexStr
+     * @return
+     */
+    public static String hexToDec(String hexStr){
+        return String.valueOf(Integer.parseInt(hexStr,16));
+    }
+
 
 
 
@@ -58,6 +67,11 @@ public class ByteUtils {
         //1111 1 + 2 + 4 + 8
         System.out.println(0xf);
 
+        String str = Integer.toHexString(Integer.MAX_VALUE);
+        System.out.println(str);
+
+        String longStr = Long.toHexString(Long.MAX_VALUE);
+        System.out.println(longStr);
 
     }
 

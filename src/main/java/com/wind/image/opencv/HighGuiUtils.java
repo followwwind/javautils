@@ -56,8 +56,8 @@ public class HighGuiUtils {
     }
 
     public static void main(String[] args) {
-        String fileName = "src/main/resources/image/idcard.jpg";
-        String destName = "src/main/resources/image/idcardface.jpg";
+        String fileName = "src/main/resources/image/face.jpg";
+        String destName = "src/main/resources/image/face2.jpg";
         drawRect(fileName, destName);
     }
 }

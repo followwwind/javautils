@@ -59,7 +59,8 @@ public class PropUtils {
 
 
     public static void main(String[] args) {
-        Properties prop = System.getProperties(); // 获取系统信息
+        // 获取系统信息
+        Properties prop = System.getProperties();
         prop.list(System.out);
     }
 }

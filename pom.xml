@@ -82,6 +82,14 @@
             <version>3.2.1</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.wind.opencv</groupId>
+            <artifactId>opencv-246</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/libs/opencv-246.jar</systemPath>
+        </dependency>
+
 
     </dependencies>
 
