@@ -24,6 +24,7 @@ http请求工具类,android均可使用(待补充)
 资源请求工具类(待补充)
 ### 11.com.wind.xml
 xml解析工具类
-
+### 12.com.wind.email
+email发送工具类
 
 
