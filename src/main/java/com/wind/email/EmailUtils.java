@@ -111,12 +111,12 @@ public class EmailUtils {
 		props.put("mail.transport.protocol", "smtp");
 		props.put("mail.smtp.auth", "true");
 		props.put("mail.host", "smtp.163.com");
-		String sender = "18771933975@163.com";
-		String receiver = "970720206@qq.com";
+		String sender = "*********@163.com";
+		String receiver = "*********@qq.com";
 		String title = "你好、Hello Mail";
 		String content = "Hello World!!!";
-		String username = "18771933975@163.com";
-		String password = "0follow0";
+		String username = "*********@163.com";
+		String password = "*********";
 		List<DataSource> attachments = new ArrayList<>();
 		DataSource dataSource1 = new FileDataSource("src/main/resources/image/你好.txt");
 		DataSource dataSource2 = new FileDataSource("src/main/resources/image/code.png");
