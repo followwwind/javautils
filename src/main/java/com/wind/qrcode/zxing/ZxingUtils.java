@@ -157,7 +157,8 @@ public class ZxingUtils {
             BinaryBitmap binaryBitmap = new BinaryBitmap(binarizer);
             Map<DecodeHintType, Object> hints = new HashMap<>();
             hints.put(DecodeHintType.CHARACTER_SET, Const.UTF8);
-            Result result = new MultiFormatReader().decode(binaryBitmap, hints);// 对图像进行解码
+            // 对图像进行解码
+            Result result = new MultiFormatReader().decode(binaryBitmap, hints);
             System.out.println("图片中内容:" + result.getText());
             System.out.println("encode:" + result.getBarcodeFormat());
         } catch (IOException e) {
