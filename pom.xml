@@ -90,6 +90,22 @@
             <systemPath>${project.basedir}/libs/opencv-246.jar</systemPath>
         </dependency>
 
+        <dependency>
+            <groupId>com.wind.qrcode</groupId>
+            <artifactId>qrcode</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/libs/QRCode.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>com.wind.qrcodeen</groupId>
+            <artifactId>qrcodeen</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/libs/Qrcodeen.jar</systemPath>
+        </dependency>
+
         <!-- https://mvnrepository.com/artifact/javax.mail/mail -->
         <dependency>
             <groupId>javax.mail</groupId>

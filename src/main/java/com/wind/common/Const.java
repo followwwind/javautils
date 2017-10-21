@@ -107,17 +107,52 @@ public interface Const {
     /**身份证15位*/
     int IDCARD_LEN15 = 15;
 
-    String codeAndCity[][] = { { "11", "北京" }, { "12", "天津" },
-            { "13", "河北" }, { "14", "山西" }, { "15", "内蒙古" }, { "21", "辽宁" },
-            { "22", "吉林" }, { "23", "黑龙江" }, { "31", "上海" }, { "32", "江苏" },
-            { "33", "浙江" }, { "34", "安徽" }, { "35", "福建" }, { "36", "江西" },
-            { "37", "山东" }, { "41", "河南" }, { "42", "湖北" }, { "43", "湖南" },
-            { "44", "广东" }, { "45", "广西" }, { "46", "海南" }, { "50", "重庆" },
-            { "51", "四川" }, { "52", "贵州" }, { "53", "云南" }, { "54", "西藏" },
-            { "61", "陕西" }, { "62", "甘肃" }, { "63", "青海" }, { "64", "宁夏" },
-            { "65", "新疆" }, { "71", "台湾" }, { "81", "香港" }, { "82", "澳门" },
-            { "91", "国外" } };
+
+    /**********************************************系统信息************************************************/
+    String OS_NAME = System.getProperty("os.name");
+
+    String WIN_DIR = System.getenv("windir");
+
+    String STR_SPACE = " ";
+
+    String STR_NEWLINE = "\n";
 
 
+    /**
+     * linux, window查看CPU进程命令
+     */
+    String WIN_CPU_PROC = WIN_DIR + "//system32//wbem//wmic.exe process get Caption,CommandLine,KernelModeTime,ReadOperationCount,ThreadCount,UserModeTime,WriteOperationCount";
+    String LINUX_CPU_PROC = "cat /proc/stat";
+
+    /**
+     * linux查看内存脚本命令
+     */
+    String LINUX_MEM_PROC = "cat /proc/meminfo";
+
+    String LINUX_IO_PROC = "iostat -d -x";
+
+    /**
+     * linux查看带宽脚本命令
+     */
+    String LINUX_NET_PROC = "cat /proc/net/dev";
+
+    /**
+     * 网口带宽,Mbps
+     */
+    float TotalBandwidth = 1;
+
+    /**
+     * linux查看磁盘脚本命令
+     */
+    String LINUX_DISK_PROC = "df";
+
+    String LINUX_UNIT_SIZE = "kb";
+
+    String WIN_UNIT_SIZE = "b";
+    /**
+     * window盘符序号  A-Z
+     */
+    char CH_A = 'A';
+    char CH_Z = 'Z';
 
 }

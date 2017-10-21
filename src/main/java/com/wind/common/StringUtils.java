@@ -77,6 +77,26 @@ public class StringUtils {
     }
 
     /**
+     * 由于String.subString对汉字处理存在问题（把一个汉字视为一个字节)，因此在 包含汉字的字符串时存在隐患，现调整如下：
+     *
+     * @param src
+     * 要截取的字符串
+     * @param startIdx
+     * 开始坐标（包括该坐标)
+     * @param endIdx
+     * 截止坐标（包括该坐标）
+     * @return
+     */
+    public static String substring(String src, int startIdx, int endIdx) {
+        byte[] b = src.getBytes();
+        StringBuilder sb = new StringBuilder();
+        for (int i = startIdx; i <= endIdx; i++) {
+            sb.append(b[i]);
+        }
+        return sb.toString();
+    }
+
+    /**
      * url解码
      * @param str
      * @return

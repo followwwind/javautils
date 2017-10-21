@@ -11,20 +11,22 @@ import java.io.UnsupportedEncodingException;
 import javax.imageio.ImageIO;
 
 import com.swetake.util.Qrcode;
-
+import com.wind.common.Const;
+import com.wind.image.ImageUtils;
 import jp.sourceforge.qrcode.QRCodeDecoder;
 import jp.sourceforge.qrcode.data.QRCodeImage;
 import jp.sourceforge.qrcode.exception.DecodingFailedException;
 
 /**
  * QrCode工具类
+ * @author wind
  */
 public class QrCodeUtils {
 	
 	/**
 	 * 获取二维码输出内容
 	 * @param content
-	 * @param version 共有版本号1-40
+	 * version 共有版本号1-40
 	 * @return
 	 */
 	public static boolean[][] getCodeOut(String content){
@@ -61,17 +63,14 @@ public class QrCodeUtils {
 	 * @return
 	 */
 	public static BufferedImage getQRCodeImage(String content, String logo){
-		BufferedImage img = null;
 		boolean[][] codeOut = getCodeOut(content);
-		img = new BufferedImage(140, 140, BufferedImage.TYPE_INT_RGB);
+		BufferedImage img = new BufferedImage(140, 140, BufferedImage.TYPE_INT_RGB);
 		Graphics2D gs = img.createGraphics();
 		
 		gs.setBackground(Color.WHITE);
 		gs.clearRect(0, 0, 140, 140);
-
 		// 设定图像颜色> BLACK
 		gs.setColor(Color.BLACK);
-
 		// 设置偏移量 不设置可能导致解析出错
 		int pixoff = 2;
 		// 输出内容> 二维码
@@ -96,20 +95,14 @@ public class QrCodeUtils {
 		img.flush();
 		return img;
 	}
-	
+
 	/**
 	 * 生成png类型的二维码
-	 * @param name 生成二维码图片名称
+	 * @param path 生成二维码图片路径
 	 * @param img
 	 */
-	public static void writeQRCodeImg(String name, BufferedImage img){
-		File imgFile = new File("out/" + name);
-		// 生成二维码QRCode图片
-		try {
-			ImageIO.write(img, "png", imgFile);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	public static void writeQRCode(String path, BufferedImage img){
+		ImageUtils.writeImage(new File(path), img);
 	}
 	
 	/**
@@ -117,20 +110,16 @@ public class QrCodeUtils {
 	 * @param imgPath
 	 * @return
 	 */
-	public static String decoderQRCode(String imgPath) { 
+	public static String parseQRCode(String imgPath) {
 		 
         // QRCode 二维码图片的文件 
         File imageFile = new File(imgPath);  
-        String decodedData = null; 
-        BufferedImage bufImg = null;
-        QRCodeImage qrCodeImage = null;
-        try { 
-        	bufImg = ImageIO.read(imageFile);
-            QRCodeDecoder decoder = new QRCodeDecoder(); 
-            
-            qrCodeImage = new QRCodeImageImpl(bufImg);
-            
-            decodedData = new String(decoder.decode(qrCodeImage),"utf-8"); 
+        String decodedData = null;
+        try {
+			BufferedImage bufImg = ImageIO.read(imageFile);
+            QRCodeDecoder decoder = new QRCodeDecoder();
+			QRCodeImage qrCodeImage = new QRCodeImageImpl(bufImg);
+            decodedData = new String(decoder.decode(qrCodeImage), Const.UTF8);
         } catch (IOException e) { 
             System.out.println("Error: " + e.getMessage()); 
             e.printStackTrace(); 
@@ -140,8 +129,11 @@ public class QrCodeUtils {
         } 
         
         return decodedData; 
-    } 
- 
-    
-	
+    }
+
+	public static void main(String[] args) {
+		System.out.println(parseQRCode("src/main/resources/image/code2.png"));
+		/*String path = "src/main/resources/image/code2.png";
+		writeQRCode(path, getQRCodeImage("hello", null));*/
+	}
 }

@@ -26,5 +26,6 @@ http请求工具类,android均可使用(待补充)
 xml解析工具类
 ### 12.com.wind.email
 email发送工具类
-
+### 13.com.wind.sysinfo
+Java获取Linux和Window系统CPU、内存和磁盘总使用率的情况
 
