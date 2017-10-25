@@ -1,7 +1,7 @@
 package com.wind.image;
 
 import com.wind.common.Const;
-import com.wind.image.opencv.HighGuiUtils;
+import com.wind.image.opencv.v2x.HighGuiUtils;
 import org.opencv.core.MatOfRect;
 import org.opencv.core.Rect;
 import javax.imageio.ImageIO;

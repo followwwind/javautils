@@ -155,4 +155,9 @@ public interface Const {
     char CH_A = 'A';
     char CH_Z = 'Z';
 
+
+    /**********************************************opencv************************************************/
+    String OPENCV_LIB_NAME_246 = "libs/x64/opencv_java246";
+
+    String OPENCV_LIB_NAME_330 = "libs/x64/opencv_java330";
 }
