@@ -1,4 +1,4 @@
-package com.wind.bean;
+package com.wind.email.bean;
 
 import java.util.List;
 import java.util.Properties;

@@ -1,4 +1,4 @@
-package com.wind.bean;
+package com.wind.sysinfo.bean;
 
 /**
  * 系统内存信息

@@ -9,7 +9,7 @@ import javax.activation.FileDataSource;
 import javax.mail.*;
 import javax.mail.internet.*;
 
-import com.wind.bean.Email;
+import com.wind.email.bean.Email;
 import org.apache.commons.codec.binary.Base64;
 
 

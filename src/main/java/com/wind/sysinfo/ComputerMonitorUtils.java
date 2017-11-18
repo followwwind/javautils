@@ -1,19 +1,15 @@
 package com.wind.sysinfo;
 
 import com.sun.management.OperatingSystemMXBean;
-import com.wind.bean.DiskInfo;
-import com.wind.bean.MemInfo;
-import com.wind.bean.MonitorInfo;
+import com.wind.sysinfo.bean.DiskInfo;
+import com.wind.sysinfo.bean.MemInfo;
+import com.wind.sysinfo.bean.MonitorInfo;
 import com.wind.common.Const;
 import com.wind.common.NumberUtils;
 import com.wind.common.StringUtils;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.lang.management.ManagementFactory;
-import java.math.BigDecimal;
 import java.util.*;
 
 /**
