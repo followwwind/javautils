@@ -24,6 +24,8 @@ public interface Const {
 
     String BRACKET_RIGHT = "]";
 
+    String UNDERLINE = "_";
+
     /**********************************************日期时间常量************************************************/
 
     String DATE_TIME = "yyyy-MM-dd HH:mm:ss";
@@ -140,7 +142,7 @@ public interface Const {
     /**
      * 网口带宽,Mbps
      */
-    float TotalBandwidth = 1;
+    float TOTAL_BAND_WIDTH = 1;
 
     /**
      * linux查看磁盘脚本命令
