@@ -17,7 +17,7 @@ import java.util.*;
  * Java获取Linux和Window系统CPU、内存和磁盘总使用率的情况
  * @author wind
  */
-public class ComputerMonitorUtil {
+public class CpuMonitorUtil {
 
 
     private static final int CPUTIME = 500;
