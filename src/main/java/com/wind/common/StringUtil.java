@@ -40,6 +40,14 @@ public class StringUtil {
     }
 
     /**
+     * 生成一个13位数的唯一字符串id
+     * @return
+     */
+    public static String getPkStr(){
+        return String.valueOf(getPKNum());
+    }
+
+    /**
      * url编码
      * @param str
      * @return

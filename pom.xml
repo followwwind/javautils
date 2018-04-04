@@ -177,7 +177,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>com.wind.sysinfo.ComputerMonitorUtil/mainClass>
+                            <mainClass>com.wind.sysinfo.CpuMonitorUtilClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
