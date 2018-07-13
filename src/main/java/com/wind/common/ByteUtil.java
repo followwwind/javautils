@@ -7,6 +7,11 @@ package com.wind.common;
 public class ByteUtil {
 
     /**
+     * 十六进制常量
+     */
+    public static final String HEX_STR = "0123456789abcdef";
+
+    /**
      * 二进制转16进制字符串
      * @param bytes
      * @return
@@ -14,7 +19,7 @@ public class ByteUtil {
     public static String byteToHex(byte[] bytes) {
 
         // 首先初始化一个字符数组，用来存放每个16进制字符
-        String hexStr = Const.HEX_STR;
+        String hexStr = HEX_STR;
 
         char[] arr = new char[bytes.length * 2];
         // 遍历字节数组，通过位运算（位运算效率高），转换成字符放到字符数组中去
@@ -26,15 +31,6 @@ public class ByteUtil {
         // 字符数组组合成字符串返回
         return new String(arr);
     }
-
-    public static String byteToStr(byte[] bytes){
-        String str = "";
-        for(byte b : bytes){
-
-        }
-        return str;
-    }
-
 
     /**
      * 十六进制字符串转换成字节数组

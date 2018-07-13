@@ -1,7 +1,5 @@
 package com.wind.date;
 
-import com.wind.common.Const;
-
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -14,6 +12,18 @@ import java.util.Date;
  */
 public class DateUtil {
 
+    public final static String DATE_TIME = "yyyy-MM-dd HH:mm:ss";
+
+    public final static String DATE_STR = "yyyy-MM-dd";
+
+    public final static int SECOND = 1000;
+
+    public final static int MINUTE = 60 * SECOND;
+
+    public final static int HOUR = 60 * MINUTE;
+
+    public final static int DAY = 24 * HOUR;
+
 
     /**
      * 格式化字符串日期，转换成Date
@@ -22,7 +32,7 @@ public class DateUtil {
      * @return
      */
     public static Date parseDate(String date, String pattern){
-        pattern = pattern == null ? Const.DATE_TIME : pattern;
+        pattern = pattern == null ? DATE_TIME : pattern;
         DateFormat dateFormat = new SimpleDateFormat(pattern);
         Date d = null;
         try {
@@ -40,7 +50,7 @@ public class DateUtil {
      * @return
      */
     public static String getDateStr(Date date, String pattern){
-        pattern = pattern == null ? Const.DATE_TIME : pattern;
+        pattern = pattern == null ? DATE_TIME : pattern;
         DateFormat dateFormat = new SimpleDateFormat(pattern);
         return dateFormat.format(date);
     }

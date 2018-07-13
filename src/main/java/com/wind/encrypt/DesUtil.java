@@ -18,6 +18,8 @@ import java.security.spec.InvalidKeySpecException;
  */
 public class DesUtil {
 
+    public final static String DES_KEY = "DES";
+
     /**
      * des加密
      * @param str 待加密对象
@@ -75,11 +77,11 @@ public class DesUtil {
             DESKeySpec desKey = new DESKeySpec(key.getBytes());
 
             // 创建一个密匙工厂，然后用它把DESKeySpec转换成一个SecretKey对象
-            SecretKeyFactory keyFactory = SecretKeyFactory.getInstance(Const.DES_KEY);
+            SecretKeyFactory keyFactory = SecretKeyFactory.getInstance(DES_KEY);
             SecretKey secretKey = keyFactory.generateSecret(desKey);
 
             // 加解密对象
-            cipher = Cipher.getInstance(Const.DES_KEY);
+            cipher = Cipher.getInstance(DES_KEY);
             cipher.init(mode, secretKey, sr);
 
         } catch (InvalidKeyException e) {

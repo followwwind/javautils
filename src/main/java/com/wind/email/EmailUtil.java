@@ -74,12 +74,12 @@ public class EmailUtil {
             //BASE64Encoder enc = new BASE64Encoder(); 
             for(DataSource attach : attachs){
             	// 添加附件
-                BodyPart messageAttachs = new MimeBodyPart();
+                BodyPart msgAttach = new MimeBodyPart();
                 // 添加附件的内容
-                messageAttachs.setDataHandler(new DataHandler(attach));
+				msgAttach.setDataHandler(new DataHandler(attach));
                 // 添加附件的标题
-                messageAttachs.setFileName(MimeUtility.encodeText(attach.getName()));
-                multipart.addBodyPart(messageAttachs);
+				msgAttach.setFileName(MimeUtility.encodeText(attach.getName()));
+                multipart.addBodyPart(msgAttach);
             }
             // 将multipart对象放到message中
             message.setContent(multipart);

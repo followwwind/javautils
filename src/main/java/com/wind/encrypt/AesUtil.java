@@ -17,7 +17,8 @@ import java.security.SecureRandom;
  */
 
 public class AesUtil {
-
+	
+	public static final String AES_KEY = "AES";
 
     /**
      * des加密
@@ -70,12 +71,12 @@ public class AesUtil {
     private static Cipher init(int mode, String key){
         Cipher cipher = null;
         try {
-            KeyGenerator kGen = KeyGenerator.getInstance(Const.AES_KEY);
+            KeyGenerator kGen = KeyGenerator.getInstance(AES_KEY);
 
             kGen.init(128, new SecureRandom(key.getBytes()));
 
-            cipher = Cipher.getInstance(Const.AES_KEY);
-            cipher.init(mode, new SecretKeySpec(kGen.generateKey().getEncoded(), Const.AES_KEY));
+            cipher = Cipher.getInstance(AES_KEY);
+            cipher.init(mode, new SecretKeySpec(kGen.generateKey().getEncoded(), AES_KEY));
 
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
