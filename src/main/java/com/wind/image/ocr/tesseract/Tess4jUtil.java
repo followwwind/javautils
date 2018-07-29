@@ -1,4 +1,4 @@
-package com.wind.image.ocr.tesseract;
+/*package com.wind.image.ocr.tesseract;
 
 
 import com.wind.common.Const;
@@ -9,17 +9,17 @@ import net.sourceforge.tess4j.util.LoadLibs;
 
 import java.io.File;
 
-/**
+*//**
  * tesseract for java， ocr（Optical Character Recognition，光学字符识别）
  * 工具类
  * @author wind
- */
+ *//*
 public class Tess4jUtil {
-    /**
+    *//**
      * 从图片中提取文字,默认设置英文字库,使用classpath目录下的训练库
      * @param path
      * @return
-     */
+     *//*
     public static String readChar(String path){
         // JNA Interface Mapping
         ITesseract instance = new Tesseract();
@@ -36,13 +36,13 @@ public class Tess4jUtil {
         return getOCRText(instance, imageFile);
     }
 
-    /**
+    *//**
      * 从图片中提取文字
      * @param path 图片路径
      * @param dataPath 训练库路径
      * @param language 语言字库
      * @return
-     */
+     *//*
     public static String readChar(String path, String dataPath, String language){
         File imageFile = new File(path);
         ITesseract instance = new Tesseract();
@@ -52,12 +52,12 @@ public class Tess4jUtil {
         return getOCRText(instance, imageFile);
     }
 
-    /**
+    *//**
      * 识别图片文件中的文字
      * @param instance
      * @param imageFile
      * @return
-     */
+     *//*
     private static String getOCRText(ITesseract instance, File imageFile){
         String result = null;
         try {
@@ -69,11 +69,12 @@ public class Tess4jUtil {
     }
 
     public static void main(String[] args) {
-        /*String path = "src/main/resources/image/text.png";
-        System.out.println(readChar(path));*/
+        String path = "src/main/resources/image/text.png";
+        System.out.println(readChar(path));
 
         String ch = "src/main/resources/image/ch.png";
         System.out.println(readChar(ch, "src/main/resources", Const.CHI_SIM));
     }
 
 }
+*/

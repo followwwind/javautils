@@ -1,26 +1,66 @@
 package com.wind.json.jackson;
 
-import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.TimeZone;
 
 /**
- * @fileName JsonUtil
- * @package com.ancda.palmbaby.hm.common.utils
- * @description json工具类
- * @author huanghy
- * @date 2018-05-03 15:39:05
- * @version V1.0
+ * @package com.wind.json.jackson
+ * @className JsonUtil
+ * @note jackson
+ * @author wind
+ * @date 2018/7/29 0:23
  */
 public class JsonUtil {
 
-    private static ObjectMapper mapper = new ObjectMapper();
+    private static Logger logger = LoggerFactory.getLogger(JsonUtil.class);
+
+    private static ObjectMapper mapper;
+
+    /**
+     * 创建只输出非Null且非Empty(如List.isEmpty)的属性到Json字符串的Mapper,建议在外部接口中使用.
+     */
+    public static ObjectMapper getInstance() {
+        if (mapper == null){
+            mapper = new ObjectMapper();
+        }
+        // 允许单引号、允许不带引号的字段名称
+        mapper.configure(JsonParser.Feature.ALLOW_SINGLE_QUOTES, true);
+        mapper.configure(JsonParser.Feature.ALLOW_UNQUOTED_FIELD_NAMES, true);
+
+        // 设置输入时忽略在JSON字符串中存在但Java对象实际没有的属性
+        mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+
+        //在序列化时日期格式默认为 yyyy-MM-dd'T'HH:mm:ss.SSSZ
+        mapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS,false);
+        //在序列化时忽略值为 null 的属性
+//        mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+        //忽略值为默认值的属性
+//        mapper.setDefaultPropertyInclusion(JsonInclude.Include.NON_DEFAULT);
+
+        // 空值处理为空串
+        mapper.getSerializerProvider().setNullValueSerializer(new JsonSerializer<Object>(){
+            @Override
+            public void serialize(Object value, JsonGenerator jsonGenerator,
+                                  SerializerProvider provider) throws IOException{
+                jsonGenerator.writeString("");
+            }
+        });
+
+
+        // 设置时区 getTimeZone("GMT+8:00")
+        mapper.setTimeZone(TimeZone.getDefault());
+        return mapper;
+    }
 
     /**
      * json字符串转list数组
@@ -30,14 +70,10 @@ public class JsonUtil {
     public static <T> List<T> toList(String jsonStr, TypeReference<List<T>> jsonTypeReference){
         try {
             if(jsonStr != null){
-                return mapper.readValue(jsonStr,jsonTypeReference);
+                return getInstance().readValue(jsonStr, jsonTypeReference);
             }
-        } catch (JsonParseException e) {
-            e.printStackTrace();
-        } catch (JsonMappingException e) {
-            e.printStackTrace();
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.warn("parse json string error:" + jsonStr, e);
         }
         return new ArrayList<T>();
     }
@@ -48,17 +84,13 @@ public class JsonUtil {
      * @param <T>
      * @return
      */
-    public static <T> T toBean(String jsonStr, Class<T> c){
+    public static <T> T toBean(String jsonStr, Class<T> c) {
         try {
             if(jsonStr != null){
-                return mapper.readValue(jsonStr,c);
+                return getInstance().readValue(jsonStr, c);
             }
-        } catch (JsonParseException e) {
-            e.printStackTrace();
-        } catch (JsonMappingException e) {
-            e.printStackTrace();
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.warn("parse json string error:" + jsonStr, e);
         }
         return null;
     }
@@ -68,18 +100,17 @@ public class JsonUtil {
 
 
     /**
-     * 对象序列化json字符串
+     * java对象序列化json字符串
      * @param obj
      * @return
      */
     public static String toJson(Object obj){
         String result = null;
         try {
-            result = mapper.writeValueAsString(obj);
+            result = getInstance().writeValueAsString(obj);
         } catch (JsonProcessingException e) {
-            e.printStackTrace();
+            logger.warn("write to json string error:" + obj, e);
         }
-
         return result;
     }
 }
