@@ -2,11 +2,14 @@ package com.wind.office.poi;
 
 import com.wind.common.Const;
 import com.wind.common.IOUtil;
+import com.wind.date.DateUtil;
+import org.apache.poi.hssf.usermodel.HSSFDateUtil;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -42,16 +45,17 @@ public class ExcelUtil {
     /**
      * 读取excel指定页的数据
      * @param path
-     * @param sheetnum
+     * @param sheetNum
      * @return
      */
-    public static List<Object> readExcel(String path, int sheetnum) {
-        List<Object> listSheet = null;
+    public static List<List<String>> readExcel(String path, int sheetNum) {
+        List<List<String>> listSheet = null;
         Workbook wb = getWorkbook(path, false);
         int sheets = wb.getNumberOfSheets();
-        if(sheetnum <= sheets && sheetnum >=0){
+        if(sheetNum <= sheets && sheetNum >=0){
             //获取sheet
-            Sheet sheet = wb.getSheetAt(sheetnum);
+            Sheet sheet = wb.getSheetAt(sheetNum);
+            System.out.println(sheet.getLastRowNum());
             listSheet = getSheet(sheet);
         }
         return listSheet;
@@ -63,8 +67,8 @@ public class ExcelUtil {
      * @param sheet
      * @return
      */
-    private static List<Object> getSheet(Sheet sheet){
-        List<Object> list = new ArrayList<>();
+    private static List<List<String>> getSheet(Sheet sheet){
+        List<List<String>> list = new ArrayList<>();
         // 获得表单的迭代器
         Iterator<Row> rows = sheet.rowIterator();
         while (rows.hasNext()) {
@@ -75,45 +79,8 @@ public class ExcelUtil {
             List<String> rowList = new ArrayList<>();
             while (cells.hasNext()) {
                 Cell cell = cells.next();
-                String value;
                 if(cell != null) {
-                    switch (cell.getCellTypeEnum()) {
-
-                        case FORMULA:
-                            value = "" + cell.getCellFormula();
-//                            value = "FORMULA value=" + cell.getCellFormula();
-                            break;
-
-                        case NUMERIC:
-                            value = "" + cell.getNumericCellValue();
-//                            value = "NUMERIC value=" + cell.getNumericCellValue();
-                            break;
-
-                        case STRING:
-                            value = cell.getStringCellValue();
-//                            value = "STRING value=" + cell.getStringCellValue();
-                            break;
-
-                        case BLANK:
-                            value = "";
-//                            value = "<BLANK>";
-                            break;
-
-                        case BOOLEAN:
-                            value = "" + cell.getBooleanCellValue();
-//                            value = "BOOLEAN value-" + cell.getBooleanCellValue();
-                            break;
-
-                        case ERROR:
-                            value = "";
-//                            value = "ERROR value=" + cell.getErrorCellValue();
-                            break;
-
-                        default:
-                            value = "";
-//                            value = "UNKNOWN value of type " + cell.getCellTypeEnum();
-                    }
-//                    System.out.println("CELL col=" + cell.getColumnIndex() + " VALUE=" + value);
+                    String value = getCellValue(cell);
                     rowList.add(value);
                 }
             }
@@ -123,6 +90,46 @@ public class ExcelUtil {
         }
 
         return list;
+    }
+
+
+    /**
+     * 获取cell数据
+     * @param cell
+     * @return
+     */
+    public static String getCellValue(Cell cell){
+        String value = "";
+        if(cell != null) {
+            switch (cell.getCellTypeEnum()) {
+                case FORMULA:
+                    value += cell.getCellFormula();
+                    break;
+
+                case NUMERIC:
+                    double cellValue = cell.getNumericCellValue();
+                    if(HSSFDateUtil.isCellDateFormatted(cell)){
+                        Date date = HSSFDateUtil.getJavaDate(cellValue);
+                        value += DateUtil.format(date, DateUtil.DATE_TIME);
+                    }else{
+                        value += cell.getNumericCellValue();
+                    }
+                    break;
+
+                case STRING:
+                    value += cell.getStringCellValue();
+                    break;
+                case BLANK:
+                    break;
+                case BOOLEAN:
+                    value += cell.getBooleanCellValue();
+                    break;
+                case ERROR:
+                    break;
+                default:break;
+            }
+        }
+        return value;
     }
 
     /**
@@ -192,19 +199,10 @@ public class ExcelUtil {
 
 
     public static void main(String[] args) {
-        String path = "E:\\doc\\1.xlsx";
-        /*int i = 1;
-        List<Object> list = readExcel(path, i);
-        System.out.println(list);*/
-
-        List<Object> list = new ArrayList<>();
-        List<Object> rowData = new ArrayList<>();
-        rowData.add("123");
-        rowData.add("1231");
-
-        list.add(rowData);
-
-        writeExcel(path, list, true);
-
+//        String path = "E:\\doc\\导入收费记录模板.xlsx";
+        String path = "E:\\doc\\导入账单模板.xlsx";
+        int i = 0;
+        List<List<String>> list = readExcel(path, i);
+        System.out.println(list);
     }
 }

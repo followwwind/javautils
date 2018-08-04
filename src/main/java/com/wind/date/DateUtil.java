@@ -1,5 +1,8 @@
 package com.wind.date;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -12,9 +15,15 @@ import java.util.Date;
  */
 public class DateUtil {
 
+    private static Logger logger = LoggerFactory.getLogger(DateUtil.class);
+
     public final static String DATE_TIME = "yyyy-MM-dd HH:mm:ss";
 
     public final static String DATE_STR = "yyyy-MM-dd";
+
+    public static final String DATETIME_MS = "yyyyMMddHHmmssSSS";
+
+    public static final String DATE_SLASH_STR = "yyyy/MM/dd";
 
     public final static int SECOND = 1000;
 
@@ -31,14 +40,14 @@ public class DateUtil {
      * @param pattern 默认 yyyy-MM-dd HH:mm:ss
      * @return
      */
-    public static Date parseDate(String date, String pattern){
-        pattern = pattern == null ? DATE_TIME : pattern;
-        DateFormat dateFormat = new SimpleDateFormat(pattern);
+    public static Date parse(String date, String pattern){
+        String p = pattern == null ? DATE_TIME : pattern;
+        DateFormat dateFormat = new SimpleDateFormat(p);
         Date d = null;
         try {
             d = dateFormat.parse(date);
         } catch (ParseException e) {
-            e.printStackTrace();
+            logger.warn("parse date string error, date:" + date + ", pattern:" + p, e);
         }
         return d;
     }
@@ -49,10 +58,37 @@ public class DateUtil {
      * @param pattern 默认 yyyy-MM-dd HH:mm:ss
      * @return
      */
-    public static String getDateStr(Date date, String pattern){
-        pattern = pattern == null ? DATE_TIME : pattern;
-        DateFormat dateFormat = new SimpleDateFormat(pattern);
+    public static String format(Date date, String pattern){
+        DateFormat dateFormat = new SimpleDateFormat(pattern == null ? DATE_TIME : pattern);
         return dateFormat.format(date);
+    }
+
+
+    /**
+     * 获取日期
+     * @param date
+     * @return
+     */
+    public static Date getDate(Date date){
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+        return calendar.getTime();
+    }
+
+
+    /**
+     * 获取星期
+     * @param date
+     * @return
+     */
+    public static int getWeek(Date date){
+        Calendar c = Calendar.getInstance();
+        c.setTime(date);
+        return c.get(Calendar.DAY_OF_WEEK) - 1;
     }
 
 
@@ -62,7 +98,7 @@ public class DateUtil {
      * @param day
      * @return
      */
-    public static Date getDateD(Date date, int day){
+    public static Date addDay(Date date, int day){
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
         calendar.add(Calendar.DAY_OF_MONTH, day);
@@ -76,7 +112,7 @@ public class DateUtil {
      * @param month
      * @return
      */
-    public static Date getDateM(Date date, int month) {
+    public static Date addMonth(Date date, int month) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
         calendar.add(Calendar.MONTH, month);
@@ -90,7 +126,7 @@ public class DateUtil {
      * @param year
      * @return
      */
-    public static Date getDateY(Date date, int year) {
+    public static Date addYear(Date date, int year) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
         calendar.add(Calendar.YEAR, year);
@@ -102,16 +138,24 @@ public class DateUtil {
      * @param start
      * @param end
      * @return
-     * @throws ParseException
      */
-    public static int daysBetween(Date start, Date end){
-        return Integer.valueOf(String.valueOf((end.getTime() - start.getTime())/(1000*3600*24)));
+    public static double daysBetween(Date start, Date end) throws IllegalArgumentException{
+        if(start == null || end == null){
+            throw new IllegalArgumentException("The date must not be null. start:" + start + ", end:" + end);
+        }
+        long endTime = end.getTime();
+        long startTime = start.getTime();
+        return (endTime - startTime) / (DAY);
     }
 
 
+
     public static void main(String[] args) {
-        Date date = getDateD(new Date(), 1);
-        System.out.println(date);
+        Date end = new Date();
+        System.out.println(format(end, DATE_STR));
+        Date start = parse("2018-08-03", DATE_STR);
+        System.out.println(start.getTime());
+        System.out.println(daysBetween(start, end));
     }
 
 

@@ -19,13 +19,55 @@ import java.util.*;
  */
 public class CpuMonitorUtil {
 
+    private static final String OS_NAME = System.getProperty("os.name");
+
+    private static final String WIN_DIR = System.getenv("windir");
+
+
+    /**
+     * linux, window查看CPU进程命令
+     */
+    private static final String WIN_CPU_PROC = WIN_DIR + "//system32//wbem//wmic.exe process get Caption,CommandLine,KernelModeTime,ReadOperationCount,ThreadCount,UserModeTime,WriteOperationCount";
+    private static final String LINUX_CPU_PROC = "cat /proc/stat";
+
+    /**
+     * linux查看内存脚本命令
+     */
+    private static final String LINUX_MEM_PROC = "cat /proc/meminfo";
+
+    private static final String LINUX_IO_PROC = "iostat -d -x";
+
+    /**
+     * linux查看带宽脚本命令
+     */
+    private static final String LINUX_NET_PROC = "cat /proc/net/dev";
+
+    /**
+     * 网口带宽,Mbps
+     */
+    private static final float TOTAL_BAND_WIDTH = 1;
+
+    /**
+     * linux查看磁盘脚本命令
+     */
+    private static final String LINUX_DISK_PROC = "df";
+
+    private static final String LINUX_UNIT_SIZE = "kb";
+
+    private static final String WIN_UNIT_SIZE = "b";
+    /**
+     * window盘符序号  A-Z
+     */
+    private static final char CH_A = 'A';
+    private static final char CH_Z = 'Z';
+
 
     private static final int CPUTIME = 500;
     private static final int PERCENT = 100;
 
 
     private static boolean isWindow(){
-        return Const.OS_NAME.toLowerCase().contains("windows") || Const.OS_NAME.toLowerCase().contains("win");
+        return OS_NAME.toLowerCase().contains("windows") || OS_NAME.toLowerCase().contains("win");
     }
 
     /**
@@ -119,7 +161,7 @@ public class CpuMonitorUtil {
                 float interval = (float)(endTime - startTime)/1000;
                 //网口传输速度,单位为bps
                 float curRate = (float)(in2 - in1 + out2 - out1)*8/(1000000*interval);
-                netUsage = curRate/Const.TOTAL_BAND_WIDTH;
+                netUsage = curRate/TOTAL_BAND_WIDTH;
             }
 
         }
@@ -143,7 +185,7 @@ public class CpuMonitorUtil {
             long free = osmxb.getFreePhysicalMemorySize();
             memInfo = new MemInfo(osmxb.getTotalPhysicalMemorySize(), free, NumberUtil.getPercent(free, total));
         }else{
-            List<String> lists = ProcessUtil.getProcessInfo(Const.LINUX_MEM_PROC);
+            List<String> lists = ProcessUtil.getProcessInfo(LINUX_MEM_PROC);
             if(lists != null && lists.size() > 0){
                 Map<String, Long> map = new HashMap<>(16);
                 for(String line : lists){
@@ -154,7 +196,7 @@ public class CpuMonitorUtil {
                         beginIndex = endIndex + 1;
                         endIndex = line.length();
                         String memory = line.substring(beginIndex, endIndex);
-                        String value = memory.toLowerCase().replace(Const.LINUX_UNIT_SIZE, Const.STR_SPACE).trim();
+                        String value = memory.toLowerCase().replace(LINUX_UNIT_SIZE, Const.SPACE_STR).trim();
                         map.put(key, Long.parseLong(value));
                     }
                 }
@@ -179,7 +221,7 @@ public class CpuMonitorUtil {
         long allTotal = 0;
         long allFree = 0;
         if(isWindow()){
-            for (char c = Const.CH_A; c <= Const.CH_Z; c++) {
+            for (char c = CH_A; c <= CH_Z; c++) {
                 String dirName = c + ":/";
                 File win = new File(dirName);
                 if (win.exists()) {
@@ -192,11 +234,11 @@ public class CpuMonitorUtil {
                 }
             }
         }else {
-            List<String> lists = ProcessUtil.getProcessInfo(Const.LINUX_DISK_PROC);
+            List<String> lists = ProcessUtil.getProcessInfo(LINUX_DISK_PROC);
             if (lists != null && lists.size() > 0) {
                 int count = -1;
                 for (String str : lists) {
-                    String[] strArray = StringUtil.split(str, Const.STR_SPACE);
+                    String[] strArray = StringUtil.split(str, Const.SPACE_STR);
                     if (++count > 0) {
                         if (strArray.length > 5) {
                             long total = Long.parseLong(strArray[1].trim());
@@ -239,7 +281,7 @@ public class CpuMonitorUtil {
     public static float getIoRatio(){
         float ioUsage = 0.0f;
         if(!isWindow()){
-            List<String> lists = ProcessUtil.getProcessInfo(Const.LINUX_IO_PROC);
+            List<String> lists = ProcessUtil.getProcessInfo(LINUX_IO_PROC);
             if(lists != null && lists.size() > 3){
                 String line = lists.get(3);
                 String[] temp = line.split("\\s+");
@@ -257,7 +299,7 @@ public class CpuMonitorUtil {
      */
     private static Map<String, Long> readWinCpuInfo(){
         Map<String, Long> map = new HashMap<>();
-        List<String> lists = ProcessUtil.getProcessInfo(Const.WIN_CPU_PROC);
+        List<String> lists = ProcessUtil.getProcessInfo(WIN_CPU_PROC);
         if(lists != null && lists.size() > 0){
             long idletime = 0;
             //读取物理设备时间
@@ -348,7 +390,7 @@ public class CpuMonitorUtil {
      * CPU利用率 = 1- (idle2-idle1)/(cpu2-cpu1)
      */
     private static Map<String, String> readLinuxCpuInfo(){
-        List<String> lists = ProcessUtil.getProcessInfo(Const.LINUX_CPU_PROC);
+        List<String> lists = ProcessUtil.getProcessInfo(LINUX_CPU_PROC);
         Map<String, String> map = new HashMap<>(16);
         if(lists != null && lists.size() > 0){
             for(String line : lists){
@@ -380,7 +422,7 @@ public class CpuMonitorUtil {
      */
     private static Map<String, Long> readNetInfo(){
         Map<String, Long> map = new HashMap<>(2);
-        List<String> lists = ProcessUtil.getProcessInfo(Const.LINUX_NET_PROC);
+        List<String> lists = ProcessUtil.getProcessInfo(LINUX_NET_PROC);
         if(lists != null && lists.size() > 0){
             for(String line : lists){
                 line = line.trim();
@@ -417,13 +459,13 @@ public class CpuMonitorUtil {
     public static void main(String[] args) {
 
         MonitorInfo monitorInfo = new MonitorInfo();
-        monitorInfo.setOsName(Const.OS_NAME);
+        monitorInfo.setOsName(OS_NAME);
         monitorInfo.setCpuRatio(getCpuInfo());
         monitorInfo.setTotalThread(getTotalThread());
         monitorInfo.setDiskInfo(getDiskInfo());
         monitorInfo.setMemInfo(getMemInfo());
         monitorInfo.setNetRatio(getNetInfo());
-        monitorInfo.setUnitSize(isWindow() ? Const.WIN_UNIT_SIZE : Const.LINUX_UNIT_SIZE);
+        monitorInfo.setUnitSize(isWindow() ? WIN_UNIT_SIZE : LINUX_UNIT_SIZE);
         monitorInfo.setIoRatio(getIoRatio());
         System.out.println(monitorInfo);
     }

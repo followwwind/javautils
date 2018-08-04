@@ -27,38 +27,35 @@ public class JsonUtil {
     private static ObjectMapper mapper;
 
     /**
-     * 创建只输出非Null且非Empty(如List.isEmpty)的属性到Json字符串的Mapper,建议在外部接口中使用.
+     * 获取对象
      */
     public static ObjectMapper getInstance() {
         if (mapper == null){
             mapper = new ObjectMapper();
+
+            // 允许单引号、允许不带引号的字段名称
+            mapper.configure(JsonParser.Feature.ALLOW_SINGLE_QUOTES, true);
+            mapper.configure(JsonParser.Feature.ALLOW_UNQUOTED_FIELD_NAMES, true);
+
+            // 设置输入时忽略在JSON字符串中存在但Java对象实际没有的属性
+            mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+
+            //在序列化时日期格式默认为 yyyy-MM-dd'T'HH:mm:ss.SSSZ
+            mapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS,false);
+
+            // 空值处理为空串
+            mapper.getSerializerProvider().setNullValueSerializer(new JsonSerializer<Object>(){
+                @Override
+                public void serialize(Object value, JsonGenerator jsonGenerator,
+                                      SerializerProvider provider) throws IOException{
+                    jsonGenerator.writeString("");
+                }
+            });
+
+
+            // 设置时区 getTimeZone("GMT+8:00")
+            mapper.setTimeZone(TimeZone.getDefault());
         }
-        // 允许单引号、允许不带引号的字段名称
-        mapper.configure(JsonParser.Feature.ALLOW_SINGLE_QUOTES, true);
-        mapper.configure(JsonParser.Feature.ALLOW_UNQUOTED_FIELD_NAMES, true);
-
-        // 设置输入时忽略在JSON字符串中存在但Java对象实际没有的属性
-        mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
-
-        //在序列化时日期格式默认为 yyyy-MM-dd'T'HH:mm:ss.SSSZ
-        mapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS,false);
-        //在序列化时忽略值为 null 的属性
-//        mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
-        //忽略值为默认值的属性
-//        mapper.setDefaultPropertyInclusion(JsonInclude.Include.NON_DEFAULT);
-
-        // 空值处理为空串
-        mapper.getSerializerProvider().setNullValueSerializer(new JsonSerializer<Object>(){
-            @Override
-            public void serialize(Object value, JsonGenerator jsonGenerator,
-                                  SerializerProvider provider) throws IOException{
-                jsonGenerator.writeString("");
-            }
-        });
-
-
-        // 设置时区 getTimeZone("GMT+8:00")
-        mapper.setTimeZone(TimeZone.getDefault());
         return mapper;
     }
 
@@ -95,9 +92,7 @@ public class JsonUtil {
         return null;
     }
 
-
-
-
+    
 
     /**
      * java对象序列化json字符串
