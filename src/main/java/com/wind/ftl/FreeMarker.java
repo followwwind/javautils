@@ -1,4 +1,4 @@
-package com.wind.ftl.entity;
+package com.wind.ftl;
 
 import java.util.Map;
 

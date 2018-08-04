@@ -38,7 +38,7 @@ public class ZxingUtil {
          */
         BitMatrix bitMatrix = null;
         try {
-            Map<EncodeHintType, Object> hints = new HashMap<>(Const.MAP_SIZE);
+            Map<EncodeHintType, Object> hints = new HashMap<>(3);
             // 指定纠错等级
             hints.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.L);
             hints.put(EncodeHintType.CHARACTER_SET, Const.UTF8);

@@ -1,4 +1,4 @@
-package com.wind.email.bean;
+package com.wind.email;
 
 import java.util.List;
 import java.util.Properties;
@@ -12,42 +12,26 @@ import javax.activation.DataSource;
  */
 public class Email {
 	/**配置session属性*/
-	Properties props;
+	private Properties props;
 	/**发送者*/
-	String sender;
+	private String sender;
 	/**发送者邮箱账号*/
-	String username;
+	private String username;
 	/**发送者邮箱密码*/
-	String password;
+	private String password;
 	/**接收者*/
-	String receiver;
+	private String receiver;
 	/**标题*/
-	String title;
+	private String title;
 	/**邮件内容*/
-	String content;
+	private String content;
 	/**附件*/
-	List<DataSource> attachments;
+	private List<DataSource> attachments;
 	
 	
 	public Email() {
-		super();
-	}
-	
-	
 
-	public Email(Properties props, String sender, String username, String password, String receiver, String title,
-			String content, List<DataSource> attachments) {
-		super();
-		this.props = props;
-		this.sender = sender;
-		this.username = username;
-		this.password = password;
-		this.receiver = receiver;
-		this.title = title;
-		this.content = content;
-		this.attachments = attachments;
 	}
-
 
 	public Properties getProps() {
 		return props;

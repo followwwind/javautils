@@ -30,9 +30,9 @@ public class HttpUrlUtil {
             URL u = new URL(url);
             HttpURLConnection connection = (HttpURLConnection) u.openConnection();
             // 设置连接超时时间
-            connection.setConnectTimeout(Const.MINUTE);
+            connection.setConnectTimeout(1000 * 60);
             // 设置读超时时间
-            connection.setReadTimeout(Const.MINUTE);
+            connection.setReadTimeout(1000 * 60);
             // 打开到此 URL 引用的资源的通信链接（如果尚未建立这样的连接）
             connection.connect();
 

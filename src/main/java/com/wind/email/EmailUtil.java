@@ -1,16 +1,15 @@
 package com.wind.email;
 
-import java.io.UnsupportedEncodingException;
-import java.util.*;
-
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
 import javax.activation.FileDataSource;
 import javax.mail.*;
 import javax.mail.internet.*;
-
-import com.wind.email.bean.Email;
-import org.apache.commons.codec.binary.Base64;
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Properties;
 
 
 /**
@@ -39,9 +38,8 @@ public class EmailUtil {
 	public static void sendEmail(Email email) {
 		// 邮件配置信息
 		Properties props = email.getProps();
-		// session.setDebug(true);
 		String sender = email.getSender();
-		String recevier = email.getReceiver();
+		String receiver = email.getReceiver();
 		String title = email.getTitle();
 		String content = email.getContent();
 		String username = email.getUsername();
@@ -54,14 +52,15 @@ public class EmailUtil {
 		};
 		// 根据属性新建一个邮件会话
 		Session session = Session.getInstance(props, authenticator);
-		List<DataSource> attachs = email.getAttachments();
+		session.setDebug(false);
+		List<DataSource> attachments = email.getAttachments();
 		// 由邮件会话新建一个消息对象
 		MimeMessage message = new MimeMessage(session);
 		try {
 			// 设置发件人的地址
 			message.setFrom(new InternetAddress(sender));
 			// 设置收件人,并设置其接收类型为TO
-			message.setRecipient(Message.RecipientType.TO, new InternetAddress(recevier));
+			message.setRecipient(Message.RecipientType.TO, new InternetAddress(receiver));
 			// 设置标题
 			message.setSubject(title);
 			// 向multipart对象中添加邮件的各个部分内容，包括文本内容和附件
@@ -70,9 +69,8 @@ public class EmailUtil {
             BodyPart contentPart = new MimeBodyPart();
             contentPart.setContent(content,"text/html;charset=utf-8");
             multipart.addBodyPart(contentPart);
-            Base64 base64=new Base64(); 
             //BASE64Encoder enc = new BASE64Encoder(); 
-            for(DataSource attach : attachs){
+            for(DataSource attach : attachments){
             	// 添加附件
                 BodyPart msgAttach = new MimeBodyPart();
                 // 添加附件的内容

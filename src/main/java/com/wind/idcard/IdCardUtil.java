@@ -30,9 +30,9 @@ import java.util.Map;
  */
 public class IdCardUtil {
 
-    static {
+    public static final int ID_CARD_LEN18 = 18;
 
-    }
+    public static final int ID_CARD_LEN15 = 15;
 
     /**
      *
@@ -41,10 +41,10 @@ public class IdCardUtil {
      */
     public static Map<String, String> takeInfo(String idCard){
         Map<String, String> map = null;
-        if(RegexUtil.isIdCard(idCard)){
-            if(idCard != null && idCard.length() == Const.IDCARD_LEN18){
+        if(RegexUtil.checkIdCard(idCard)){
+            if(idCard != null && idCard.length() == ID_CARD_LEN18){
 
-            }else if(idCard != null && idCard.length() == Const.IDCARD_LEN15){
+            }else if(idCard != null && idCard.length() == ID_CARD_LEN15){
 
             }
         }

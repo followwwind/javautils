@@ -2,7 +2,6 @@ package com.wind.ftl;
 
 
 import com.wind.common.Const;
-import com.wind.ftl.entity.FreeMarker;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
