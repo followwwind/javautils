@@ -2,6 +2,7 @@ package com.wind.resource;
 
 import com.wind.common.Const;
 import com.wind.common.IOUtil;
+import com.wind.common.DateUtil;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -28,9 +29,9 @@ public class UrlUtil {
             URL u = new URL(url);
             HttpURLConnection connection = (HttpURLConnection) u.openConnection();
             // 设置连接超时时间
-            connection.setConnectTimeout(Const.MINUTE);
+            connection.setConnectTimeout(DateUtil.MINUTE);
             // 设置读超时时间
-            connection.setReadTimeout(Const.MINUTE);
+            connection.setReadTimeout(DateUtil.MINUTE);
             // 打开到此 URL 引用的资源的通信链接（如果尚未建立这样的连接）
             connection.connect();
 

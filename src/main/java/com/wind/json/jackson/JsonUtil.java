@@ -72,7 +72,7 @@ public class JsonUtil {
         } catch (IOException e) {
             logger.warn("parse json string error:" + jsonStr, e);
         }
-        return new ArrayList<T>();
+        return new ArrayList<>();
     }
 
     /**

@@ -34,7 +34,7 @@ public class JsonTest {
     @Before
     public void init(){
         for(int i = 0; i < count; i++){
-            BeanObj obj = new BeanObj();
+            BeanObj obj = new BeanObj("");
             list.add(obj);
         }
     }
@@ -143,5 +143,11 @@ public class JsonTest {
         list.forEach(GsonUtil::toJson);
         long end2 = System.currentTimeMillis();
         System.out.println(end2 - start2);
+    }
+
+    @Test
+    public void test(){
+        AAA aaa = com.wind.json.jackson.JsonUtil.toBean("{code:200}", AAA.class);
+        System.out.println(aaa);
     }
 }

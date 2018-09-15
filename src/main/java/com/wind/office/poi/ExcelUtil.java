@@ -2,7 +2,7 @@ package com.wind.office.poi;
 
 import com.wind.common.Const;
 import com.wind.common.IOUtil;
-import com.wind.date.DateUtil;
+import com.wind.common.DateUtil;
 import org.apache.poi.hssf.usermodel.HSSFDateUtil;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.*;

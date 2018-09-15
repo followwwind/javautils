@@ -114,7 +114,7 @@ public class EmailUtil {
 		DataSource dataSource2 = new FileDataSource("src/main/resources/image/code.png");
 		attachments.add(dataSource1);
 		attachments.add(dataSource2);
-		Email email = new Email(props, sender, username, password, receiver, title, content, attachments);
-		EmailUtil.sendEmail(email);
+//		Email email = new Email(props, sender, username, password, receiver, title, content, attachments);
+//		EmailUtil.sendEmail(email);
 	}
 }

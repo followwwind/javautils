@@ -41,7 +41,7 @@ public class FtlUtil {
                 Writer out = new OutputStreamWriter(fos);
                 Map<String, Object> map = freeMarker.getMap();
                 if(map == null){
-                    map = new HashMap<>(Const.MAP_SIZE);
+                    map = new HashMap<>(16);
                 }
                 temp.process(map, out);
                 fos.flush();

@@ -1,4 +1,4 @@
-package com.wind.qrcode.zxing;
+package com.wind.media;
 
 import com.google.zxing.*;
 import com.google.zxing.client.j2se.BufferedImageLuminanceSource;
@@ -19,8 +19,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * google zxing二维码工具类
+ * @Title: ZxingUtil
+ * @Package com.wind.media
+ * @Description: google zxing二维码工具类
  * @author wind
+ * @date 2018/9/15 15:29
+ * @version V1.0
  */
 public class ZxingUtil {
 
@@ -61,10 +65,10 @@ public class ZxingUtil {
      * @param target 图片文件路径
      * @param imageType 图片类型
      */
-    public static void writeCode(String content, int width, int height, String imageType, String target){
+    public static void genCode(String content, int width, int height, String imageType, String target){
         // 生成矩阵
         BitMatrix bitMatrix = getBitMatrix(content, width, height);
-        writeCode(bitMatrix, imageType, target);
+        genCode(bitMatrix, imageType, target);
     }
 
     /**
@@ -73,7 +77,7 @@ public class ZxingUtil {
      * @param target
      * @param imageType
      */
-    public static void writeCode(BitMatrix bitMatrix, String imageType, String target){
+    public static void genCode(BitMatrix bitMatrix, String imageType, String target){
         try {
             Path path = FileSystems.getDefault().getPath(target);
             // 输出图像
@@ -90,8 +94,8 @@ public class ZxingUtil {
      * @param target 图片文件路径
      * @param imageType 图片类型
      */
-    public static void writeCode(String content, int length, String imageType, String target){
-        writeCode(content, length, length, imageType, target);
+    public static void genCode(String content, int length, String imageType, String target){
+        genCode(content, length, length, imageType, target);
     }
 
 
@@ -103,12 +107,12 @@ public class ZxingUtil {
      * @param logoLength
      * @param target 目标路径
      */
-    public static void writeCode(String content, int length, String imageType, String logo, int logoLength, String target){
+    public static void genCode(String content, int length, String imageType, String logo, int logoLength, String target){
 
         BitMatrix matrix = getBitMatrix(content, length, length);
         File logoFile = new File(logo);
         if(!logoFile.exists()){
-            writeCode(matrix, target, imageType);
+            genCode(matrix, target, imageType);
         }else{
             int width = matrix.getWidth();
             int height = matrix.getHeight();
@@ -126,14 +130,12 @@ public class ZxingUtil {
              */
             try {
                 BufferedImage logoImage = ImageIO.read(logoFile);
-                int logoWidth = logoLength;
-                int logoHeight = logoLength;
                 /**
                  * logo放在中心
                  */
-                int x = (length - logoWidth) / 2;
-                int y = (length - logoHeight) / 2;
-                g.drawImage(logoImage, x, y, logoWidth, logoHeight, null);
+                int x = (length - logoLength) / 2;
+                int y = (length - logoLength) / 2;
+                g.drawImage(logoImage, x, y, logoLength, logoLength, null);
                 g.dispose();
                 codeImage.flush();
                 logoImage.flush();
@@ -149,7 +151,7 @@ public class ZxingUtil {
      * 解析二维码
      * @param filePath
      */
-    public static void readCode(String filePath){
+    public static void parseCode(String filePath){
         BufferedImage image;
         try {
             image = ImageIO.read(new File(filePath));
@@ -176,7 +178,7 @@ public class ZxingUtil {
         String logo = "src/main/resources/image/head.jpg";
         int logoLength = 50;
         writeCode(content, length, Const.IMAGE_PNG, logo, logoLength, target);*/
-        readCode(target);
+        parseCode(target);
     }
 
 }

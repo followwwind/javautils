@@ -16,6 +16,15 @@ public class BeanObj {
 
     private List<JsonObj> objList;
 
+    private BeanObj(){
+
+    }
+
+
+    public BeanObj(String name){
+        this.name = name;
+    }
+
     public String getName() {
         return name;
     }

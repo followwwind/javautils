@@ -15,10 +15,7 @@
         <java.version>1.8</java.version>
         
         <!--  tools -->
-        <!--  slf4j -->
-        <slf4j.version>1.7.7</slf4j.version>
-
-        <!-- commons-->
+        <!-- common -->
         <commons-lang.version>2.6</commons-lang.version>
         <commons-lang3.version>3.5</commons-lang3.version>
         <commons-collections.version>3.2.2</commons-collections.version>
@@ -27,20 +24,124 @@
         <commons-httpclient.version>3.1</commons-httpclient.version>
         <commons-digester.version>2.1</commons-digester.version>
         <commons-codec.version>1.11</commons-codec.version>
+        <commons-pool2.version>2.5.0</commons-pool2.version>
 
-        <!--  http tool -->
+        <!--  slf4j -->
+        <slf4j.version>1.7.7</slf4j.version>
+
+        <mail.version>1.4.7</mail.version>
+        <guava.version>21.0</guava.version>
+        <joda-time.version>2.9.2</joda-time.version>
+        <jjwt.version>0.9.0</jjwt.version>
+        <thumbnailator.version>0.4.8</thumbnailator.version>
+        <javacv.version>1.4.2</javacv.version>
+        <zxing.version>3.3.0</zxing.version>
+        <poi.version>3.16</poi.version>
+        <swagger.version>2.9.0</swagger.version>
+        <xstream.version>1.4.7</xstream.version>
+        <json-lib.version>2.4</json-lib.version>
+        <dozer.version>5.5.1</dozer.version>
+        <okhttp.version>3.10.0</okhttp.version>
+        <freemarker.version>2.3.23</freemarker.version>
+        <pherialize.version>1.2.4</pherialize.version>
+        <hessian.version>4.0.38</hessian.version>
+
+        <dom4j.version>1.6.1</dom4j.version>
+
+        <!-- http -->
         <okhttp.version>3.10.0</okhttp.version>
         
-        <!-- json tool -->
+        <!-- json  -->
         <json-lib.version>2.4</json-lib.version>
         <jackson.version>2.9.5</jackson.version>
         <gson.version>2.8.5</gson.version>
         <fastjson.version>1.2.47</fastjson.version>
+
+        <junit.version>4.12</junit.version>
 	</properties>
 	
 	
     <dependencies>
-        <!-- LOGGING begin -->
+
+        <!--commons utils begin -->
+        <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+            <version>${commons-lang.version}</version>
+            <type>jar</type>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${commons-lang3.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-collections</groupId>
+            <artifactId>commons-collections</artifactId>
+            <version>${commons-collections.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>${commons-io.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+            <version>${commons-fileupload.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>commons-logging</groupId>
+                    <artifactId>commons-logging</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-httpclient</groupId>
+            <artifactId>commons-httpclient</artifactId>
+            <version>${commons-httpclient.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>commons-logging</groupId>
+                    <artifactId>commons-logging</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-digester</groupId>
+            <artifactId>commons-digester</artifactId>
+            <version>${commons-digester.version}</version>
+            <classifier/>
+            <exclusions>
+                <exclusion>
+                    <groupId>commons-logging</groupId>
+                    <artifactId>commons-logging</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!-- commons-codec -->
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+            <version>${commons-codec.version}</version>
+        </dependency>
+        <!-- commons-codec -->
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-pool2</artifactId>
+            <version>${commons-pool2.version}</version>
+        </dependency>
+        <!--commons utils end -->
+
+        <!-- logging begin -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
@@ -63,41 +164,30 @@
             <artifactId>jul-to-slf4j</artifactId>
             <version>${slf4j.version}</version>
         </dependency>
-        <!-- LOGGING end -->
-
-        <!-- commons-codec -->
-        <dependency>
-            <groupId>commons-codec</groupId>
-            <artifactId>commons-codec</artifactId>
-            <version>${commons-codec.version}</version>
-        </dependency>
-        <!-- commons-codec -->
+        <!-- logging end -->
 
 
-        <!-- POI -->
-        <!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
+        <!-- poi begin -->
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi</artifactId>
-            <version>3.16</version>
+            <version>${poi.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi-ooxml</artifactId>
-            <version>3.16</version>
+            <version>${poi.version}</version>
         </dependency>
 
         <!--java.lang.ClassNotFoundException: org.apache.xerces.parsers.SAXParser-->
-        <!-- https://mvnrepository.com/artifact/xerces/xerces -->
         <!--<dependency>
             <groupId>xerces</groupId>
             <artifactId>xerces</artifactId>
             <version>2.2.1</version>
         </dependency>-->
+        <!-- poi end -->
 
-        <!-- POI -->
-
-		<!-- http tool -->
+		<!-- http tool begin-->
 		
         <!-- okhttp -->
         <dependency>
@@ -105,10 +195,9 @@
             <artifactId>okhttp</artifactId>
             <version>${okhttp.version}</version>
         </dependency>
-        <!-- http tool -->
+        <!-- http tool end-->
         
-        <!-- json tool -->
-       
+        <!-- json tool begin-->
         <!-- json lib -->
         <dependency>
             <groupId>net.sf.json-lib</groupId>
@@ -133,104 +222,65 @@
             <artifactId>fastjson</artifactId>
             <version>${fastjson.version}</version>
         </dependency>
-        <!-- json tool -->
+        <!-- json tool end-->
 
-        <!-- qrcode -->
-        <!-- https://mvnrepository.com/artifact/com.google.zxing/core -->
+        <!-- code begin -->
         <dependency>
             <groupId>com.google.zxing</groupId>
             <artifactId>core</artifactId>
-            <version>3.3.0</version>
+            <version>${zxing.version}</version>
         </dependency>
 
         <dependency>
             <groupId>com.google.zxing</groupId>
             <artifactId>javase</artifactId>
-            <version>3.3.0</version>
+            <version>${zxing.version}</version>
         </dependency>
-        <!-- qrcode -->
+        <!-- code end -->
 
-        <!-- xml -->
-        <!-- https://mvnrepository.com/artifact/dom4j/dom4j -->
+        <!-- media begin -->
+        <!-- thumbnailator -->
         <dependency>
-            <groupId>dom4j</groupId>
-            <artifactId>dom4j</artifactId>
-            <version>1.6.1</version>
-        </dependency>
-        <!-- xml -->
-
-        <!-- https://mvnrepository.com/artifact/net.sourceforge.tess4j/tess4j -->
-        <!-- <dependency>
-            <groupId>net.sourceforge.tess4j</groupId>
-            <artifactId>tess4j</artifactId>
-            <version>3.2.1</version>
-        </dependency> -->
-
-        <dependency>
-            <groupId>com.wind.opencv</groupId>
-            <artifactId>opencv-246</artifactId>
-            <version>1.0</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/libs/opencv-246.jar</systemPath>
+            <groupId>net.coobird</groupId>
+            <artifactId>thumbnailator</artifactId>
+            <version>${thumbnailator.version}</version>
         </dependency>
 
         <dependency>
-            <groupId>com.wind.opencv</groupId>
-            <artifactId>opencv-330</artifactId>
-            <version>1.0</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/libs/opencv-330.jar</systemPath>
+            <groupId>org.bytedeco</groupId>
+            <artifactId>javacv-platform</artifactId>
+            <version>${javacv.version}</version>
         </dependency>
+        <!-- media end -->
 
-        <dependency>
-            <groupId>com.wind.qrcode</groupId>
-            <artifactId>qrcode</artifactId>
-            <version>1.0</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/libs/QRCode.jar</systemPath>
-        </dependency>
-
-        <dependency>
-            <groupId>com.wind.qrcodeen</groupId>
-            <artifactId>qrcodeen</artifactId>
-            <version>1.0</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/libs/Qrcodeen.jar</systemPath>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/javax.mail/mail -->
+        <!-- mail -->
         <dependency>
             <groupId>javax.mail</groupId>
             <artifactId>mail</artifactId>
-            <version>1.4.7</version>
+            <version>${mail.version}</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.38</version>
-        </dependency>
-
+        <!-- freemarker -->
         <dependency>
             <groupId>org.freemarker</groupId>
             <artifactId>freemarker</artifactId>
-            <version>2.3.23</version>
+            <version>${freemarker.version}</version>
         </dependency>
 
+        <!-- xml -->
         <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <version>2.9.5</version>
+            <groupId>dom4j</groupId>
+            <artifactId>dom4j</artifactId>
+            <version>${dom4j.version}</version>
         </dependency>
+
+        <!-- junit -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.12</version>
+            <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
-
-
     </dependencies>
 
 
