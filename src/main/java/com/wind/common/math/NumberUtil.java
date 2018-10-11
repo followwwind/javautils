@@ -3,8 +3,12 @@ package com.wind.common.math;
 import java.math.BigDecimal;
 
 /**
- * 数字工具类
+ * @Title: NumberUtil
+ * @Package com.wind.common.math
+ * @Description: 数字工具类
  * @author wind
+ * @date 2018/10/11 9:23
+ * @version V1.0
  */
 public class NumberUtil {
 

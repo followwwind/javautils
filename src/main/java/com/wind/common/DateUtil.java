@@ -10,8 +10,12 @@ import java.util.Calendar;
 import java.util.Date;
 
 /**
- * 日期工具类集合
+ * @Title: DateUtil
+ * @Package com.wind.common
+ * @Description: 日期工具类集合
  * @author wind
+ * @date 2018/10/11 9:24
+ * @version V1.0
  */
 public class DateUtil {
 

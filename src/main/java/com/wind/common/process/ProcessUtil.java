@@ -7,8 +7,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 进程执行工具类
+ * @Title: ProcessUtil
+ * @Package com.wind.common.process
+ * @Description: 进程执行工具类
  * @author wind
+ * @date 2018/10/11 9:23
+ * @version V1.0
  */
 public class ProcessUtil {
 
@@ -16,7 +20,7 @@ public class ProcessUtil {
      * 获取进程命令执行打印出来的信息
      * @return
      */
-    public static List<String> getProcessInfo(String command){
+    public static List<String> exec(String command){
         Runtime r = Runtime.getRuntime();
         BufferedReader in = null;
         Process pro = null;

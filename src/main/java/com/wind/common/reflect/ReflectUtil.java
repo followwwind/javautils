@@ -5,8 +5,12 @@ import java.lang.reflect.Field;
 import java.util.*;
 
 /**
- * 类反射工具类
+ * @Title: ReflectUtil
+ * @Package com.wind.common.reflect
+ * @Description: 类反射工具类
  * @author wind
+ * @date 2018/10/11 9:23
+ * @version V1.0
  */
 public class ReflectUtil {
 
@@ -25,7 +29,7 @@ public class ReflectUtil {
         if(flag){
             Class supperClass = c.getSuperclass();
             if(!Object.class.equals(supperClass)){
-                fields.addAll(getFields(supperClass, flag));
+                fields.addAll(getFields(supperClass, true));
             }
         }
         return fields;
