@@ -9,12 +9,14 @@ import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 import com.wind.common.Constants;
 import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.geom.RoundRectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
 import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.Map;
 
 /**
@@ -118,20 +120,15 @@ public class ZxingUtil {
             BufferedImage codeImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
             for (int x = 0; x < length; x++) {
                 for (int y = 0; y < length; y++) {
-//                    codeImage.setRGB(x, y, matrix.get(x, y) ? Color.BLACK : Color.WHITE);
+                    codeImage.setRGB(x, y, matrix.get(x, y) ? 0xFF000000 : 0xFFFFFFFF);
                 }
             }
 
-
             Graphics2D g = codeImage.createGraphics();
-            /**
-             * 读取Logo图片
-             */
+            //读取Logo图片
             try {
                 BufferedImage logoImage = ImageIO.read(logoFile);
-                /**
-                 * logo放在中心
-                 */
+                //logo放在中心
                 int x = (length - logoLength) / 2;
                 int y = (length - logoLength) / 2;
                 g.drawImage(logoImage, x, y, logoLength, logoLength, null);
@@ -150,7 +147,7 @@ public class ZxingUtil {
      * 解析二维码
      * @param filePath
      */
-    public static void parseCode(String filePath){
+    public static String parseCode(String filePath){
         BufferedImage image;
         try {
             image = ImageIO.read(new File(filePath));
@@ -161,23 +158,23 @@ public class ZxingUtil {
             hints.put(DecodeHintType.CHARACTER_SET, Constants.UTF8);
             // 对图像进行解码
             Result result = new MultiFormatReader().decode(binaryBitmap, hints);
-            System.out.println("图片中内容:" + result.getText());
-            System.out.println("encode:" + result.getBarcodeFormat());
+            return result.getText();
         } catch (IOException e) {
             e.printStackTrace();
         } catch (NotFoundException e) {
             e.printStackTrace();
         }
+        return "";
     }
 
     public static void main(String[] args) {
         String target = "src/main/resources/image/code.png";
-        /*String content = "hello world";
+        String content = "hello world";
         int length = 300;
         String logo = "src/main/resources/image/head.jpg";
         int logoLength = 50;
-        writeCode(content, length, Constants.IMAGE_PNG, logo, logoLength, target);*/
-        parseCode(target);
+        genCode(content, length, Constants.IMAGE_PNG, logo, logoLength, target);
+        System.out.println(parseCode(target));;
     }
 
 }

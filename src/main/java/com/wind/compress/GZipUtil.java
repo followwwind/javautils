@@ -7,8 +7,12 @@ import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 
 /**
- * GZIP压缩工具类
- * @author  wind
+ * @Title: GZipUtil
+ * @Package com.wind.compress
+ * @Description: GZIP压缩工具类
+ * @author wind
+ * @date 2018/10/12 17:47
+ * @version V1.0
  */
 public class GZipUtil {
 
@@ -117,10 +121,10 @@ public class GZipUtil {
 
 
     public static void main(String[] args) {
-//        String source = "src/main/resources/image/head.jpg";
-//        String target = "src/main/resources/";
-//        compress(source, target);
-//        uncompress(target + "head.jpg.gz", target);
+        String source = "src/main/resources/image/head.jpg";
+        String target = "src/main/resources/";
+        compress(source, target);
+        uncompress(target + "head.jpg.gz", target);
     }
 
 

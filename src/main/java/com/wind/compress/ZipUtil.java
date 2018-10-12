@@ -56,11 +56,13 @@ public class ZipUtil {
     private static void addEntry(String base, File source, ZipOutputStream zos){
         // 按目录分级，形如：aaa/bbb.txt
         String entry = base + source.getName();
-        //System.out.println(entry);
         if (source.isDirectory()) {
-            for (File file : source.listFiles()) {
-                // 递归列出目录下的所有文件，添加文件Entry
-                addEntry(entry + "/", file, zos);
+            File[] files = source.listFiles();
+            if(files != null){
+                for (File file : files) {
+                    // 递归列出目录下的所有文件，添加文件Entry
+                    addEntry(entry + "/", file, zos);
+                }
             }
         } else {
             FileInputStream fis = null;
@@ -108,7 +110,7 @@ public class ZipUtil {
                     }
                     // 写入文件
                     bos = new BufferedOutputStream(new FileOutputStream(target));
-                    byte[] buffer = new byte[Constants.BUFFER_1024];
+                    byte[] buffer = new byte[Constants.BUFFER_512];
                     while (true) {
                         int len = zis.read(buffer);
                         if(len == -1){
@@ -128,14 +130,14 @@ public class ZipUtil {
     }
 
     public static void main(String[] args) {
-        String source = "src/main/resources/image/head.jpg";
-        String target = "src/main/resources/123.zip";
-        zip(source, target);
+//        String source = "src/main/resources/image/head.jpg";
+//        String target = "src/main/resources/123.zip";
+//        zip(source, target);
 
-        /*String filePath = "src/main/resources/image.zip";
+        String filePath = "src/main/resources/123.zip";
         String targetPath = "E:/";
 
-        unzip(filePath, targetPath);*/
+        unzip(filePath, targetPath);
 
     }
 

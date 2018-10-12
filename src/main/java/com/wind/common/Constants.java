@@ -55,6 +55,8 @@ public interface Constants {
 
     int BUFFER_1024 = 1024;
 
+    int BUFFER_512 = 512;
+
     String USER_DIR = "user.dir";
 
     /**********************************************tesseract for java语言字库************************************************/

@@ -36,6 +36,7 @@
         <thumbnailator.version>0.4.8</thumbnailator.version>
         <javacv.version>1.4.2</javacv.version>
         <zxing.version>3.3.0</zxing.version>
+        <qrcode.version>1.0.0</qrcode.version>
         <poi.version>3.16</poi.version>
         <swagger.version>2.9.0</swagger.version>
         <xstream.version>1.4.7</xstream.version>
@@ -45,6 +46,7 @@
         <freemarker.version>2.3.23</freemarker.version>
         <pherialize.version>1.2.4</pherialize.version>
         <hessian.version>4.0.38</hessian.version>
+        <tess4j.version>4.2.2</tess4j.version>
 
         <dom4j.version>1.6.1</dom4j.version>
 
@@ -236,6 +238,21 @@
             <artifactId>javase</artifactId>
             <version>${zxing.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.qrcode</groupId>
+            <artifactId>qrcode</artifactId>
+            <version>${qrcode.version}</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/libs/QRCode.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>com.qrcode</groupId>
+            <artifactId>qrcodeen</artifactId>
+            <version>${qrcode.version}</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/libs/Qrcodeen.jar</systemPath>
+        </dependency>
         <!-- code end -->
 
         <!-- media begin -->
@@ -250,6 +267,12 @@
             <groupId>org.bytedeco</groupId>
             <artifactId>javacv-platform</artifactId>
             <version>${javacv.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>net.sourceforge.tess4j</groupId>
+            <artifactId>tess4j</artifactId>
+            <version>${tess4j.version}</version>
         </dependency>
         <!-- media end -->
 
