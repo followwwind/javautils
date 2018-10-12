@@ -1,8 +1,7 @@
 package com.wind.compress;
 
-import com.wind.common.Const;
-import com.wind.common.IOUtil;
-
+import com.wind.common.Constants;
+import com.wind.common.IoUtil;
 import java.io.*;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
@@ -25,7 +24,7 @@ public class ZipUtil {
         if (sourceFile.exists()) {
             File targetFile = new File(target);
             if(targetFile.isDirectory()){
-                String zipName = sourceFile.getName() + Const.FILE_ZIP;
+                String zipName = sourceFile.getName() + Constants.FILE_ZIP;
                 targetFile = new File(target + zipName);
             }
 
@@ -41,7 +40,7 @@ public class ZipUtil {
             } catch (IOException e) {
                 e.printStackTrace();
             } finally {
-                IOUtil.close(fos);
+                IoUtil.close(fos);
             }
         }
     }
@@ -81,7 +80,7 @@ public class ZipUtil {
             } catch (IOException e) {
                 e.printStackTrace();
             } finally {
-                IOUtil.close(fis, bis);
+                IoUtil.close(fis, bis);
             }
         }
     }
@@ -109,7 +108,7 @@ public class ZipUtil {
                     }
                     // 写入文件
                     bos = new BufferedOutputStream(new FileOutputStream(target));
-                    byte[] buffer = new byte[Const.BUFFER_1024];
+                    byte[] buffer = new byte[Constants.BUFFER_1024];
                     while (true) {
                         int len = zis.read(buffer);
                         if(len == -1){
@@ -123,7 +122,7 @@ public class ZipUtil {
             } catch (IOException e) {
                 e.printStackTrace();
             } finally {
-                IOUtil.close(zis, bos);
+                IoUtil.close(zis, bos);
             }
         }
     }

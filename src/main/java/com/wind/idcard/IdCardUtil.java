@@ -1,6 +1,5 @@
 package com.wind.idcard;
 
-import com.wind.common.Const;
 import com.wind.common.RegexUtil;
 
 import java.util.Map;

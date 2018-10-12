@@ -1,7 +1,7 @@
 /*package com.wind.image.ocr.tesseract;
 
 
-import com.wind.common.Const;
+import com.wind.common.Constants;
 import net.sourceforge.tess4j.ITesseract;
 import net.sourceforge.tess4j.Tesseract;
 import net.sourceforge.tess4j.TesseractException;
@@ -32,7 +32,7 @@ public class Tess4jUtil {
         //Set the tessdata path
         instance.setDatapath(tessDataFolder.getAbsolutePath());
         //英文库识别数字比较准确
-        instance.setLanguage(Const.ENG);
+        instance.setLanguage(Constants.ENG);
         return getOCRText(instance, imageFile);
     }
 
@@ -73,7 +73,7 @@ public class Tess4jUtil {
         System.out.println(readChar(path));
 
         String ch = "src/main/resources/image/ch.png";
-        System.out.println(readChar(ch, "src/main/resources", Const.CHI_SIM));
+        System.out.println(readChar(ch, "src/main/resources", Constants.CHI_SIM));
     }
 
 }

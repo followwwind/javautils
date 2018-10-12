@@ -1,7 +1,7 @@
 package com.wind.ftl;
 
 
-import com.wind.common.Const;
+import com.wind.common.Constants;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
@@ -33,7 +33,7 @@ public class FtlUtil {
             if(sign){
                 Configuration cfg = new Configuration(Configuration.VERSION_2_3_22);
                 cfg.setDirectoryForTemplateLoading(new File(freeMarker.getCfgDir()));
-                cfg.setDefaultEncoding(Const.UTF8);
+                cfg.setDefaultEncoding(Constants.UTF8);
                 cfg.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);
                 Template temp = cfg.getTemplate(freeMarker.getCfgName());
 

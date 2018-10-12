@@ -20,7 +20,7 @@ excel读写工具类(待补充)
 http请求工具类,android均可使用(待补充)
 ### 9 com.wind.qrcode
 二维码工具类(待补充)
-### 10 com.wind.resource
+### 10 com.wind.resource.ResourceTest
 资源请求工具类(待补充)
 ### 11 com.wind.xml
 xml解析工具类

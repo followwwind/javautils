@@ -1,8 +1,7 @@
 package com.wind.compress;
 
-import com.wind.common.Const;
-import com.wind.common.IOUtil;
-
+import com.wind.common.Constants;
+import com.wind.common.IoUtil;
 import java.io.*;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
@@ -35,7 +34,7 @@ public class GZipUtil {
                 System.err.println("target不能是文件，否则压缩失败");
                 return;
             }
-            target += (source.getName() + Const.FILE_GZ);
+            target += (source.getName() + Constants.FILE_GZ);
             FileOutputStream fos = new FileOutputStream(target);
             compress(fis, fos);
         } catch (FileNotFoundException e) {
@@ -60,7 +59,7 @@ public class GZipUtil {
     public static void uncompress(File source, String target){
         try {
             FileInputStream fis = new FileInputStream(source);
-            target += source.getName().replace(Const.FILE_GZ, "");
+            target += source.getName().replace(Constants.FILE_GZ, "");
             FileOutputStream fos = new FileOutputStream(target);
             uncompress(fis, fos);
         } catch (FileNotFoundException e) {
@@ -79,7 +78,7 @@ public class GZipUtil {
         try {
             gos = new GZIPOutputStream(out);
             int count;
-            byte[] data = new byte[Const.BUFFER_1024];
+            byte[] data = new byte[Constants.BUFFER_1024];
             while ((count = in.read(data, 0, data.length)) != -1) {
                 gos.write(data, 0, count);
             }
@@ -88,7 +87,7 @@ public class GZipUtil {
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
-            IOUtil.close(in, gos);
+            IoUtil.close(in, gos);
         }
     }
 
@@ -103,14 +102,14 @@ public class GZipUtil {
         try {
             gis = new GZIPInputStream(in);
             int count;
-            byte[] data = new byte[Const.BUFFER_1024];
-            while ((count = gis.read(data, 0, Const.BUFFER_1024)) != -1) {
+            byte[] data = new byte[Constants.BUFFER_1024];
+            while ((count = gis.read(data, 0, Constants.BUFFER_1024)) != -1) {
                 out.write(data, 0, count);
             }
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
-            IOUtil.close(gis, out);
+            IoUtil.close(gis, out);
         }
     }
 

@@ -1,25 +1,30 @@
 package com.wind.resource;
 
-import com.wind.common.Const;
+import com.wind.common.Constants;
 
 import java.io.InputStream;
 import java.net.URL;
 
 
 /**
- * 资源文件加载工具类
+ * @Title: ResourceUtil
+ * @Package com.wind.resource
+ * @Description: 资源文件加载工具类
+ * @author wind
+ * @date 2018/10/11 10:46
+ * @version V1.0
  */
 public class ResourceUtil {
 
     /**
      * 获取资源文件的输入流
      * @param fileName
-     * @return file:/E:/code/javacode/javautils/target/classes/image/code.png
+     * @return
      */
     public static InputStream getResFile(String fileName){
         InputStream in = null;
         if(fileName != null){
-            if(fileName.startsWith(Const.FILE_SEPARATOR)){
+            if(fileName.startsWith(Constants.FILE_SEPARATOR)){
                 in = ResourceUtil.class.getResourceAsStream(fileName);
             }else{
                 in = ClassLoader.getSystemClassLoader().getResourceAsStream(fileName);
@@ -31,12 +36,12 @@ public class ResourceUtil {
     /**
      * 获取资源文件的url
      * @param fileName
-     * @return  file:/E:/code/javacode/javautils/target/classes/image/code.png
+     * @return
      */
     public static URL getUrlFile(String fileName){
         URL url = null;
         if(fileName != null){
-            if(fileName.startsWith(Const.FILE_SEPARATOR)){
+            if(fileName.startsWith(Constants.FILE_SEPARATOR)){
                 url = ResourceUtil.class.getResource(fileName);
             }else{
                 url = ClassLoader.getSystemClassLoader().getResource(fileName);
@@ -48,32 +53,18 @@ public class ResourceUtil {
 
     /**
      * 获取class类的编译路径
-     * @return  /E:/code/javacode/javautils/target/classes/
+     * @return
      */
     public static String getClassPath(){
-        return Thread.currentThread().getContextClassLoader().getResource(Const.BLANK_STR).getPath();
+        URL url = Thread.currentThread().getContextClassLoader().getResource(Constants.BLANK_STR);
+        return url != null ? url.getPath() : "";
     }
 
     /**
      * 获取项目的路径
-     * @return E:\code\javacode\javautils
+     * @return
      */
-    public static String getRelPath(){
-        return System.getProperty(Const.USER_DIR);
+    public static String getProjectPath(){
+        return System.getProperty(Constants.USER_DIR);
     }
-
-
-    public static void main(String[] args) {
-        URL url = getUrlFile("image/code.png");
-        URL url2 = getUrlFile("/image/code.png");
-        System.out.println(url);
-        System.out.println(url2);
-
-        String relativelyPath = getRelPath();
-        System.out.println(relativelyPath);
-
-        String path = getClassPath();
-        System.out.println(path);
-    }
-
 }

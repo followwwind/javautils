@@ -6,7 +6,7 @@ import java.io.File;
  * 常量字符集合
  * @author wind
  */
-public interface Const {
+public interface Constants {
 
     /**********************************************分隔符常量************************************************/
 
@@ -27,6 +27,8 @@ public interface Const {
     String BRACKET_RIGHT = "]";
 
     String UNDERLINE = "_";
+
+    String MINUS_STR = "-";
 
 
 

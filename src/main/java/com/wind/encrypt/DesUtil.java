@@ -1,7 +1,5 @@
 package com.wind.encrypt;
 
-import com.wind.common.Const;
-
 import javax.crypto.*;
 import javax.crypto.spec.DESKeySpec;
 import java.io.IOException;

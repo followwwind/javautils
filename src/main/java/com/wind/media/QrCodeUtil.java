@@ -11,7 +11,7 @@
 //import javax.imageio.ImageIO;
 //
 //import com.swetake.util.Qrcode;
-//import com.wind.common.Const;
+//import com.wind.common.Constants;
 //import com.wind.media.ImageUtil;
 //import jp.sourceforge.qrcode.QRCodeDecoder;
 //import jp.sourceforge.qrcode.data.QRCodeImage;
@@ -119,7 +119,7 @@
 //			BufferedImage bufImg = ImageIO.read(imageFile);
 //            QRCodeDecoder decoder = new QRCodeDecoder();
 //			QRCodeImage qrCodeImage = new QRCodeImageImpl(bufImg);
-//            decodedData = new String(decoder.decode(qrCodeImage), Const.UTF8);
+//            decodedData = new String(decoder.decode(qrCodeImage), Constants.UTF8);
 //        } catch (IOException e) {
 //            System.out.println("Error: " + e.getMessage());
 //            e.printStackTrace();

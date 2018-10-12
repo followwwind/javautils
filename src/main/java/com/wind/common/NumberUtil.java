@@ -1,4 +1,4 @@
-package com.wind.common.math;
+package com.wind.common;
 
 import java.math.BigDecimal;
 

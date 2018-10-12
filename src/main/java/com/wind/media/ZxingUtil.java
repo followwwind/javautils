@@ -6,8 +6,7 @@ import com.google.zxing.client.j2se.MatrixToImageWriter;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.common.HybridBinarizer;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
-import com.wind.common.Color;
-import com.wind.common.Const;
+import com.wind.common.Constants;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -45,7 +44,7 @@ public class ZxingUtil {
             Map<EncodeHintType, Object> hints = new HashMap<>(3);
             // 指定纠错等级
             hints.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.L);
-            hints.put(EncodeHintType.CHARACTER_SET, Const.UTF8);
+            hints.put(EncodeHintType.CHARACTER_SET, Constants.UTF8);
             //设置白边
             hints.put(EncodeHintType.MARGIN, 1);
             // 生成矩阵
@@ -119,7 +118,7 @@ public class ZxingUtil {
             BufferedImage codeImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
             for (int x = 0; x < length; x++) {
                 for (int y = 0; y < length; y++) {
-                    codeImage.setRGB(x, y, matrix.get(x, y) ? Color.BLACK : Color.WHITE);
+//                    codeImage.setRGB(x, y, matrix.get(x, y) ? Color.BLACK : Color.WHITE);
                 }
             }
 
@@ -159,7 +158,7 @@ public class ZxingUtil {
             Binarizer binarizer = new HybridBinarizer(source);
             BinaryBitmap binaryBitmap = new BinaryBitmap(binarizer);
             Map<DecodeHintType, Object> hints = new HashMap<>();
-            hints.put(DecodeHintType.CHARACTER_SET, Const.UTF8);
+            hints.put(DecodeHintType.CHARACTER_SET, Constants.UTF8);
             // 对图像进行解码
             Result result = new MultiFormatReader().decode(binaryBitmap, hints);
             System.out.println("图片中内容:" + result.getText());
@@ -177,7 +176,7 @@ public class ZxingUtil {
         int length = 300;
         String logo = "src/main/resources/image/head.jpg";
         int logoLength = 50;
-        writeCode(content, length, Const.IMAGE_PNG, logo, logoLength, target);*/
+        writeCode(content, length, Constants.IMAGE_PNG, logo, logoLength, target);*/
         parseCode(target);
     }
 

@@ -1,4 +1,4 @@
-package com.wind.common.reflect;
+package com.wind.reflect;
 
 
 import java.lang.reflect.Field;
@@ -6,7 +6,7 @@ import java.util.*;
 
 /**
  * @Title: ReflectUtil
- * @Package com.wind.common.reflect
+ * @Package com.wind.reflect
  * @Description: 类反射工具类
  * @author wind
  * @date 2018/10/11 9:23

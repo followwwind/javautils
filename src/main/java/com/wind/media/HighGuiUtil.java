@@ -1,6 +1,6 @@
 //package com.wind.image.opencv.v2x;
 //
-//import com.wind.common.Const;
+//import com.wind.common.Constants;
 //import org.opencv.core.*;
 //import org.opencv.highgui.Highgui;
 //import org.opencv.imgproc.Imgproc;
@@ -13,7 +13,7 @@
 //public class HighGuiUtil {
 //
 //    static {
-//        System.loadLibrary(Const.OPENCV_LIB_NAME_246);
+//        System.loadLibrary(Constants.OPENCV_LIB_NAME_246);
 //    }
 //
 //    /**

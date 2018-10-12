@@ -1,9 +1,8 @@
 package com.wind.resource;
 
-import com.wind.common.Const;
-import com.wind.common.IOUtil;
+import com.wind.common.Constants;
 import com.wind.common.DateUtil;
-
+import com.wind.common.IoUtil;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -53,7 +52,7 @@ public class UrlUtil {
             System.out.println("响应内容如下：");
             // 内容是文本，直接以缓冲字符流读取
             reader = new BufferedReader(new InputStreamReader(
-                    connection.getInputStream(), Const.UTF8));
+                    connection.getInputStream(), Constants.UTF8));
             String data;
             while ((data = reader.readLine()) != null)
             {
@@ -64,7 +63,7 @@ public class UrlUtil {
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
-            IOUtil.close(reader);
+            IoUtil.close(reader);
         }
     }
 

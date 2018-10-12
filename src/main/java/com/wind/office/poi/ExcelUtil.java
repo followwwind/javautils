@@ -1,12 +1,16 @@
 package com.wind.office.poi;
 
-import com.wind.common.Const;
-import com.wind.common.IOUtil;
+import com.wind.common.Constants;
 import com.wind.common.DateUtil;
+import com.wind.common.IoUtil;
 import org.apache.poi.hssf.usermodel.HSSFDateUtil;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Date;
@@ -37,7 +41,7 @@ public class ExcelUtil {
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
-            IOUtil.close(out);
+            IoUtil.close(out);
         }
     }
 
@@ -170,7 +174,7 @@ public class ExcelUtil {
         InputStream input = null;
         try {
             if(sign){
-                if(path.endsWith(Const.EXCEL_XLS)){
+                if(path.endsWith(Constants.EXCEL_XLS)){
                     //2003-2007
                     wb = new HSSFWorkbook();
                 }else{
@@ -179,7 +183,7 @@ public class ExcelUtil {
                 }
             }else{
                 input = new FileInputStream(path);
-                if(path.endsWith(Const.EXCEL_XLSX)){
+                if(path.endsWith(Constants.EXCEL_XLSX)){
                     //2007+
                     wb = new XSSFWorkbook(input);
                 }else{
@@ -192,7 +196,7 @@ public class ExcelUtil {
         } catch (IOException e) {
             e.printStackTrace();
         }finally{
-            IOUtil.close(input);
+            IoUtil.close(input);
         }
         return wb;
     }

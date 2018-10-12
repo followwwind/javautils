@@ -1,6 +1,6 @@
 package com.wind.encrypt;
 
-import com.wind.common.Const;
+import com.wind.common.Constants;
 
 import javax.crypto.*;
 import javax.crypto.spec.SecretKeySpec;
@@ -26,12 +26,12 @@ public class AesUtil {
      * @param key 密钥 长度为8的倍数
      * @return
      */
-    public static byte[] encrypt(String str,String key) {
+    public static byte[] encrypt(String str, String key) {
         byte[] bytes = null;
 
         try {
             Cipher cipher = init(Cipher.ENCRYPT_MODE, key);
-            bytes = cipher.doFinal(str.getBytes(Const.UTF8));
+            bytes = cipher.doFinal(str.getBytes(Constants.UTF8));
         } catch (IllegalBlockSizeException e) {
             e.printStackTrace();
         } catch (BadPaddingException e) {
@@ -49,11 +49,11 @@ public class AesUtil {
      * @param key 密钥 长度为8的倍数
      * @return
      */
-    public static String decrypt(byte[] bytes,String key) {
+    public static String decrypt(byte[] bytes, String key) {
         String str = null;
         try {
             Cipher cipher = init(Cipher.DECRYPT_MODE, key);
-            str = new String(cipher.doFinal(bytes), Const.UTF8);
+            str = new String(cipher.doFinal(bytes), Constants.UTF8);
         } catch (IllegalBlockSizeException e) {
             e.printStackTrace();
         } catch (BadPaddingException e) {

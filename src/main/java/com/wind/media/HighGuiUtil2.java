@@ -1,6 +1,6 @@
 //package com.wind.image.opencv.v3x;
 //
-//import com.wind.common.Const;
+//import com.wind.common.Constants;
 //import org.opencv.core.*;
 //import org.opencv.imgcodecs.Imgcodecs;
 //import org.opencv.objdetect.CascadeClassifier;
@@ -12,7 +12,7 @@
 //public class HighGuiUtil {
 //
 //    static {
-//        System.loadLibrary(Const.OPENCV_LIB_NAME_330);
+//        System.loadLibrary(Constants.OPENCV_LIB_NAME_330);
 //    }
 //
 //    /**

@@ -1,10 +1,11 @@
 package com.wind.xml;
 
-import com.wind.common.IOUtil;
+import com.wind.common.IoUtil;
 import org.dom4j.*;
 import org.dom4j.io.OutputFormat;
 import org.dom4j.io.SAXReader;
 import org.dom4j.io.XMLWriter;
+
 import java.io.*;
 import java.util.Iterator;
 import java.util.List;
@@ -117,7 +118,7 @@ public class XmlUtil {
             e.printStackTrace();
         }
         finally{
-            IOUtil.close(out);
+            IoUtil.close(out);
         }
     }
 

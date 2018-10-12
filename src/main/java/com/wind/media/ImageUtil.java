@@ -1,8 +1,7 @@
 package com.wind.media;
 
-import com.wind.common.Const;
-import org.opencv.core.MatOfRect;
-import org.opencv.core.Rect;
+import com.wind.common.Constants;
+
 import javax.imageio.ImageIO;
 import javax.imageio.ImageReadParam;
 import javax.imageio.ImageReader;
@@ -47,7 +46,7 @@ public class ImageUtil {
         if(fileName != null){
             String suffix = "";
             for(String str : ImageIO.getReaderFormatNames()){
-                if(fileName.lastIndexOf(Const.POINT_STR + str) > 0){
+                if(fileName.lastIndexOf(Constants.POINT_STR + str) > 0){
                     suffix = str;
                 }
             }
@@ -123,7 +122,7 @@ public class ImageUtil {
      */
     public static void writeImage(File destImage, BufferedImage bufferedImage){
         try {
-            ImageIO.write(bufferedImage, Const.IMAGE_PNG, destImage);
+            ImageIO.write(bufferedImage, Constants.IMAGE_PNG, destImage);
         } catch (IOException e) {
             e.printStackTrace();
         }

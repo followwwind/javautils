@@ -1,6 +1,7 @@
 package com.wind.jdbc;
 
 
+import com.wind.common.Constants;
 import com.wind.common.PropUtil;
 import com.wind.common.StringUtil;
 import com.wind.jdbc.callback.DbCallBack;
@@ -14,12 +15,16 @@ import java.util.List;
 import java.util.Properties;
 
 /**
- * Db工具类
+ * @Title: DbUtil
+ * @Package com.wind.jdbc
+ * @Description: Db工具类
  * @author wind
+ * @date 2018/10/11 9:56
+ * @version V1.0
  */
 public class DbUtil {
 
-    private static Properties props = PropUtil.readProp("src/main/resources/jdbc.properties");
+    private static Properties props = PropUtil.getProp("src/main/resources/jdbc.properties");
     static{
         try {
             Class.forName(props.getProperty("driverClass"));
@@ -105,7 +110,7 @@ public class DbUtil {
                 table = new Table();
                 String tableName = rs.getString("TABLE_NAME");
                 table.setTableName(tableName);
-                table.setProperty(StringUtil.getCamelCase(tableName, true));
+                table.setProperty(DbUtil.getCamelCase(tableName, true));
                 String catalog = rs.getString("TABLE_CAT");
                 table.setTableCat(catalog);
                 table.setRemarks(rs.getString("REMARKS"));
@@ -136,7 +141,7 @@ public class DbUtil {
                 String typeName = rs.getString("TYPE_NAME");
                 column.setColumnName(colName);
                 column.setColumnType(typeName);
-                column.setProperty(StringUtil.getCamelCase(colName, false));
+                column.setProperty(DbUtil.getCamelCase(colName, false));
                 column.setType(getFieldType(typeName));
                 column.setColumnSize(rs.getInt("COLUMN_SIZE"));
                 column.setNullable(rs.getInt("NULLABLE"));
@@ -231,5 +236,57 @@ public class DbUtil {
                 e.printStackTrace();
             }
         }
+    }
+
+    /**
+     * java驼峰命名的类成员字段名
+     * @param name 字符串
+     * @param flag 首字母小写为false， 大写为true
+     * @return
+     */
+    public static String getCamelCase(String name, boolean flag){
+        StringBuilder sb = new StringBuilder();
+        if(name != null){
+            String[] arr = StringUtil.split(name, Constants.UNDERLINE);
+            for(int i = 0; i < arr.length; i++){
+                String s = arr[i];
+                if(i == 0){
+                    if(flag){
+                        s = getFirst(s, true);
+                    }
+                    sb.append(s);
+                }else{
+                    int len = s.length();
+                    if(len == 1){
+                        sb.append(s.toUpperCase());
+                    }else{
+                        sb.append(s.substring(0, 1).toUpperCase()).append(s.substring(1));
+                    }
+                }
+            }
+        }
+        return sb.toString();
+    }
+
+    /**
+     * 将单词首字母变大小写
+     * @param str
+     * @param flag true变大写， false变小写
+     * @return
+     */
+    public static String getFirst(String str, boolean flag){
+        StringBuilder sb = new StringBuilder();
+        if(str != null && str.length() > 1){
+            String first;
+            if(flag){
+                first = str.substring(0, 1).toUpperCase();
+            }else{
+                first = str.substring(0, 1).toLowerCase();
+            }
+
+            sb.append(first).append(str.substring(1));
+        }
+
+        return sb.toString();
     }
 }
