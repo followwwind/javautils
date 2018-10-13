@@ -120,9 +120,10 @@ public class QrCodeUtil {
         File imageFile = new File(imgPath);
         String decodedData = null;
         try {
-			BufferedImage img = ImageIO.read(imageFile);
+			final BufferedImage img = ImageIO.read(imageFile);
             QRCodeDecoder decoder = new QRCodeDecoder();
 			QRCodeImage qrCodeImage = new QRCodeImage() {
+
 				@Override
 				public int getWidth() {
 					return img.getWidth();
