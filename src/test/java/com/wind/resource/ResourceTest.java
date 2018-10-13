@@ -1,5 +1,6 @@
 package com.wind.resource;
 
+import com.wind.network.http.ResourceUtil;
 import org.junit.Test;
 
 import java.net.URL;

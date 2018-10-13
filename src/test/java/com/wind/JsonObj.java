@@ -1,4 +1,4 @@
-package com.wind.json;
+package com.wind;
 
 public class JsonObj {
 

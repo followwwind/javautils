@@ -1,4 +1,4 @@
-package com.wind.http;
+package com.wind.network.http;
 
 import com.wind.common.Constants;
 import com.wind.common.IoUtil;
@@ -14,9 +14,12 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * HttpURLConnection网络工具类
- * @author huanghy
- *
+ * @Title: HttpUrlUtil
+ * @Package com.wind.network.http
+ * @Description: HttpURLConnection网络工具类
+ * @author wind
+ * @date 2018/10/13 10:01
+ * @version V1.0
  */
 public class HttpUrlUtil {
 	
@@ -67,6 +70,11 @@ public class HttpUrlUtil {
         } finally {
             IoUtil.close(reader);
         }
+    }
+
+    public static void main(String[] args) {
+        String url = "http://api.douban.com/v2/movie/in_theaters";
+        parseUrl(url);
     }
 
 }

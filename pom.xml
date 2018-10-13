@@ -29,6 +29,9 @@
         <!--  slf4j -->
         <slf4j.version>1.7.7</slf4j.version>
 
+        <!--  spring -->
+        <spring.version>5.0.5.RELEASE</spring.version>
+
         <mail.version>1.4.7</mail.version>
         <guava.version>21.0</guava.version>
         <joda-time.version>2.9.2</joda-time.version>
@@ -36,7 +39,6 @@
         <thumbnailator.version>0.4.8</thumbnailator.version>
         <javacv.version>1.4.2</javacv.version>
         <zxing.version>3.3.0</zxing.version>
-        <qrcode.version>1.0.0</qrcode.version>
         <poi.version>3.16</poi.version>
         <swagger.version>2.9.0</swagger.version>
         <xstream.version>1.4.7</xstream.version>
@@ -47,6 +49,7 @@
         <pherialize.version>1.2.4</pherialize.version>
         <hessian.version>4.0.38</hessian.version>
         <tess4j.version>4.2.2</tess4j.version>
+        <asm.version>3.3.1</asm.version>
 
         <dom4j.version>1.6.1</dom4j.version>
 
@@ -58,6 +61,10 @@
         <jackson.version>2.9.5</jackson.version>
         <gson.version>2.8.5</gson.version>
         <fastjson.version>1.2.47</fastjson.version>
+
+        <!-- system -->
+        <qrcode.version>1.0.0</qrcode.version>
+        <opencv.version>1.0.0</opencv.version>
 
         <junit.version>4.12</junit.version>
 	</properties>
@@ -168,6 +175,14 @@
         </dependency>
         <!-- logging end -->
 
+        <!-- spring begin-->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <version>${spring.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <!-- spring end-->
 
         <!-- poi begin -->
         <dependency>
@@ -267,12 +282,69 @@
             <groupId>org.bytedeco</groupId>
             <artifactId>javacv-platform</artifactId>
             <version>${javacv.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.bytedeco.javacpp-presets</groupId>
+                    <artifactId>tesseract-platform</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.bytedeco.javacpp-presets</groupId>
+                    <artifactId>leptonica-platform</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.bytedeco.javacpp-presets</groupId>
+                    <artifactId>flandmark-platform</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.bytedeco.javacpp-presets</groupId>
+                    <artifactId>artoolkitplus-platform</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.bytedeco.javacpp-presets</groupId>
+                    <artifactId>librealsense-platform</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.bytedeco.javacpp-presets</groupId>
+                    <artifactId>libfreenect2-platform</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.bytedeco.javacpp-presets</groupId>
+                    <artifactId>libfreenect-platform</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.bytedeco.javacpp-presets</groupId>
+                    <artifactId>libdc1394-platform</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.bytedeco.javacpp-presets</groupId>
+                    <artifactId>flycapture-platform</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.bytedeco.javacpp-presets</groupId>
+                    <artifactId>opencv-platform</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>
             <groupId>net.sourceforge.tess4j</groupId>
             <artifactId>tess4j</artifactId>
             <version>${tess4j.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.opencv</groupId>
+            <artifactId>opencv246</artifactId>
+            <version>${opencv.version}</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/libs/opencv-246.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>com.opencv</groupId>
+            <artifactId>opencv330</artifactId>
+            <version>${opencv.version}</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/libs/opencv-330.jar</systemPath>
         </dependency>
         <!-- media end -->
 
@@ -296,6 +368,14 @@
             <artifactId>dom4j</artifactId>
             <version>${dom4j.version}</version>
         </dependency>
+
+        <!-- asm -->
+        <dependency>
+            <groupId>asm</groupId>
+            <artifactId>asm</artifactId>
+            <version>${asm.version}</version>
+        </dependency>
+
 
         <!-- junit -->
         <dependency>

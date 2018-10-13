@@ -3,8 +3,12 @@ package com.wind.ftl;
 import java.util.Map;
 
 /**
- * freeMarker实体类描述
+ * @Title: FreeMarker
+ * @Package com.wind.ftl
+ * @Description: freeMarker实体类描述
  * @author wind
+ * @date 2018/10/13 11:02
+ * @version V1.0
  */
 public class FreeMarker {
     /**
@@ -27,26 +31,6 @@ public class FreeMarker {
      * 生成文件名
      */
     private String fileName;
-
-    public FreeMarker() {
-    }
-
-    public FreeMarker(String cfgDir, String fileDir) {
-        this.cfgDir = cfgDir;
-        this.fileDir = fileDir;
-    }
-
-    public FreeMarker(String cfgDir, String cfgName, String fileDir, String fileName) {
-        this(cfgDir, cfgName, null, fileDir, fileName);
-    }
-
-    public FreeMarker(String cfgDir, String cfgName, Map<String, Object> map, String fileDir, String fileName) {
-        this.cfgDir = cfgDir;
-        this.cfgName = cfgName;
-        this.map = map;
-        this.fileDir = fileDir;
-        this.fileName = fileName;
-    }
 
     public String getCfgDir() {
         return cfgDir;
@@ -85,23 +69,6 @@ public class FreeMarker {
     }
 
     public void setFileName(String fileName) {
-        this.fileName = fileName;
-    }
-
-
-    public void setData(String cfgName, Map<String, Object> map, String fileName){
-        this.cfgName = cfgName;
-        this.map = map;
-        this.fileName = fileName;
-    }
-
-    public void setData(String cfgName, String fileName){
-        this.cfgName = cfgName;
-        this.fileName = fileName;
-    }
-
-    public void setData(Map<String, Object> map, String fileName){
-        this.map = map;
         this.fileName = fileName;
     }
 }

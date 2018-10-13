@@ -1,4 +1,4 @@
-package com.wind.email;
+package com.wind.network.email;
 
 import javax.activation.DataHandler;
 import javax.activation.DataSource;

@@ -1,4 +1,4 @@
-package com.wind.resource;
+package com.wind.network.http;
 
 import com.wind.common.Constants;
 

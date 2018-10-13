@@ -1,5 +1,7 @@
 package com.wind.json;
 
+import com.wind.AAA;
+import com.wind.BeanObj;
 import com.wind.json.gson.GsonUtil;
 import com.wind.json.jsonlib.JsonUtil;
 import org.junit.Before;

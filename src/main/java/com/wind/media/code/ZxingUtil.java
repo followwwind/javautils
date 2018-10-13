@@ -1,4 +1,4 @@
-package com.wind.media;
+package com.wind.media.code;
 
 import com.google.zxing.*;
 import com.google.zxing.client.j2se.BufferedImageLuminanceSource;
@@ -9,14 +9,12 @@ import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 import com.wind.common.Constants;
 import javax.imageio.ImageIO;
 import java.awt.*;
-import java.awt.geom.RoundRectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
 import java.util.HashMap;
-import java.util.Hashtable;
 import java.util.Map;
 
 /**
@@ -174,7 +172,7 @@ public class ZxingUtil {
         String logo = "src/main/resources/image/head.jpg";
         int logoLength = 50;
         genCode(content, length, Constants.IMAGE_PNG, logo, logoLength, target);
-        System.out.println(parseCode(target));;
+        System.out.println(parseCode(target));
     }
 
 }

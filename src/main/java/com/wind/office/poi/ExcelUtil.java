@@ -18,7 +18,12 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- * poi组件excel工具类
+ * @Title: ExcelUtil
+ * @Package com.wind.office.poi
+ * @Description: poi组件excel工具类
+ * @author wind
+ * @date 2018/10/13 10:50
+ * @version V1.0
  */
 public class ExcelUtil {
 
@@ -102,7 +107,7 @@ public class ExcelUtil {
      * @param cell
      * @return
      */
-    public static String getCellValue(Cell cell){
+    private static String getCellValue(Cell cell){
         String value = "";
         if(cell != null) {
             switch (cell.getCellTypeEnum()) {

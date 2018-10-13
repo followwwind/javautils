@@ -1,4 +1,4 @@
-package com.wind.media;
+package com.wind.media.code;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -12,6 +12,7 @@ import javax.imageio.ImageIO;
 
 import com.swetake.util.Qrcode;
 import com.wind.common.Constants;
+import com.wind.media.ImageUtil;
 import jp.sourceforge.qrcode.QRCodeDecoder;
 import jp.sourceforge.qrcode.data.QRCodeImage;
 import jp.sourceforge.qrcode.exception.DecodingFailedException;

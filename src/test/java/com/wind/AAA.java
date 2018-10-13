@@ -1,9 +1,13 @@
-package com.wind.json;
+package com.wind;
+
+
+import javax.annotation.Resource;
 
 public class AAA {
     /**
      * 状态码
      */
+    @Resource
     private Integer code;
     /**
      * 消息说明

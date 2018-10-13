@@ -1,4 +1,4 @@
-package com.wind.json;
+package com.wind;
 
 import java.util.Date;
 import java.util.List;
