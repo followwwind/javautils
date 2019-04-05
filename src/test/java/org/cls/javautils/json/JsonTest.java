@@ -101,7 +101,7 @@ public class JsonTest {
         long start = System.currentTimeMillis();
         BeanObj obj = JsonUtil.toBean(jsonStr, BeanObj.class);
         System.out.println(obj.getDate());
-        System.out.println(JsonUtil.toJson(obj, false));
+        System.out.println(JsonUtil.toJson(obj));
         long end = System.currentTimeMillis();
         System.out.println(end - start);
     }
@@ -116,7 +116,7 @@ public class JsonTest {
         long end = System.currentTimeMillis();
         System.out.println(end - start);
         long start2 = System.currentTimeMillis();
-        list.forEach(obj -> JsonUtil.toJson(obj, false));
+        list.forEach(obj -> JsonUtil.toJson(obj));
         long end2 = System.currentTimeMillis();
         System.out.println(end2 - start2);
     }

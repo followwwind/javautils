@@ -80,11 +80,4 @@ public class PropUtil {
             }
         }
     }
-
-
-    public static void main(String[] args) {
-        // 获取系统信息
-        Properties prop = System.getProperties();
-        prop.list(System.out);
-    }
 }
