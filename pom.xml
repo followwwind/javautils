@@ -4,28 +4,20 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.wind</groupId>
+    <groupId>com.cls</groupId>
     <artifactId>javautils</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-	<properties>
-		<!-- environment setting -->
+    <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
-
-        <!-- 文件拷贝时的编码 -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <!-- 编译时的编码 -->
         <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
-
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <maven.compiler.compilerVersion>1.8</maven.compiler.compilerVersion>
-
-        <!--  tools -->
-        <!-- common -->
         <commons-lang.version>2.6</commons-lang.version>
         <commons-lang3.version>3.5</commons-lang3.version>
         <commons-collections.version>3.2.2</commons-collections.version>
@@ -35,13 +27,8 @@
         <commons-digester.version>2.1</commons-digester.version>
         <commons-codec.version>1.11</commons-codec.version>
         <commons-pool2.version>2.5.0</commons-pool2.version>
-
-        <!--  slf4j -->
         <slf4j.version>1.7.7</slf4j.version>
-
-        <!--  spring -->
         <spring.version>5.0.5.RELEASE</spring.version>
-
         <mail.version>1.4.7</mail.version>
         <guava.version>21.0</guava.version>
         <joda-time.version>2.9.2</joda-time.version>
@@ -60,141 +47,34 @@
         <hessian.version>4.0.38</hessian.version>
         <tess4j.version>4.2.2</tess4j.version>
         <asm.version>3.3.1</asm.version>
-
         <dom4j.version>1.6.1</dom4j.version>
-
-        <!-- http -->
         <okhttp.version>3.10.0</okhttp.version>
-        
-        <!-- json  -->
         <json-lib.version>2.4</json-lib.version>
         <jackson.version>2.9.5</jackson.version>
         <gson.version>2.8.5</gson.version>
         <fastjson.version>1.2.47</fastjson.version>
-
-        <!-- system -->
         <qrcode.version>1.0.0</qrcode.version>
         <opencv.version>1.0.0</opencv.version>
-
         <junit.version>4.12</junit.version>
-	</properties>
-	
-	
+    </properties>
+
     <dependencies>
-
-        <!--commons utils begin -->
-        <dependency>
-            <groupId>commons-lang</groupId>
-            <artifactId>commons-lang</artifactId>
-            <version>${commons-lang.version}</version>
-            <type>jar</type>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-            <version>${commons-lang3.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>commons-collections</groupId>
-            <artifactId>commons-collections</artifactId>
-            <version>${commons-collections.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>commons-io</groupId>
-            <artifactId>commons-io</artifactId>
-            <version>${commons-io.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>commons-fileupload</groupId>
-            <artifactId>commons-fileupload</artifactId>
-            <version>${commons-fileupload.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>commons-logging</groupId>
-                    <artifactId>commons-logging</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
-        <dependency>
-            <groupId>commons-httpclient</groupId>
-            <artifactId>commons-httpclient</artifactId>
-            <version>${commons-httpclient.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>commons-logging</groupId>
-                    <artifactId>commons-logging</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
-        <dependency>
-            <groupId>commons-digester</groupId>
-            <artifactId>commons-digester</artifactId>
-            <version>${commons-digester.version}</version>
-            <classifier/>
-            <exclusions>
-                <exclusion>
-                    <groupId>commons-logging</groupId>
-                    <artifactId>commons-logging</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
-        <!-- commons-codec -->
         <dependency>
             <groupId>commons-codec</groupId>
             <artifactId>commons-codec</artifactId>
             <version>${commons-codec.version}</version>
         </dependency>
-        <!-- commons-codec -->
-
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-pool2</artifactId>
-            <version>${commons-pool2.version}</version>
-        </dependency>
-        <!--commons utils end -->
-
-        <!-- logging begin -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
             <version>${slf4j.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-log4j12</artifactId>
-            <version>${slf4j.version}</version>
-        </dependency>
-        <!-- common-logging 实际调用slf4j -->
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>jcl-over-slf4j</artifactId>
-            <version>${slf4j.version}</version>
-        </dependency>
-        <!-- java.util.logging 实际调用slf4j -->
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>jul-to-slf4j</artifactId>
-            <version>${slf4j.version}</version>
-        </dependency>
-        <!-- logging end -->
-
-        <!-- spring begin-->
-        <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
             <version>${spring.version}</version>
             <scope>compile</scope>
         </dependency>
-        <!-- spring end-->
-
-        <!-- poi begin -->
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi</artifactId>
@@ -205,40 +85,22 @@
             <artifactId>poi-ooxml</artifactId>
             <version>${poi.version}</version>
         </dependency>
-
-        <!--java.lang.ClassNotFoundException: org.apache.xerces.parsers.SAXParser-->
-        <!--<dependency>
-            <groupId>xerces</groupId>
-            <artifactId>xerces</artifactId>
-            <version>2.2.1</version>
-        </dependency>-->
-        <!-- poi end -->
-
-		<!-- http tool begin-->
-		
-        <!-- okhttp -->
         <dependency>
             <groupId>com.squareup.okhttp3</groupId>
             <artifactId>okhttp</artifactId>
             <version>${okhttp.version}</version>
         </dependency>
-        <!-- http tool end-->
-        
-        <!-- json tool begin-->
-        <!-- json lib -->
         <dependency>
             <groupId>net.sf.json-lib</groupId>
             <artifactId>json-lib</artifactId>
             <version>${json-lib.version}</version>
             <classifier>jdk15</classifier>
         </dependency>
-        <!-- jackson -->
         <dependency>
-		    <groupId>com.fasterxml.jackson.core</groupId>
-		    <artifactId>jackson-databind</artifactId>
-		    <version>${jackson.version}</version>
-		</dependency>
-        <!-- gson -->
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
@@ -249,21 +111,16 @@
             <artifactId>fastjson</artifactId>
             <version>${fastjson.version}</version>
         </dependency>
-        <!-- json tool end-->
-
-        <!-- code begin -->
         <dependency>
             <groupId>com.google.zxing</groupId>
             <artifactId>core</artifactId>
             <version>${zxing.version}</version>
         </dependency>
-
         <dependency>
             <groupId>com.google.zxing</groupId>
             <artifactId>javase</artifactId>
             <version>${zxing.version}</version>
         </dependency>
-
         <dependency>
             <groupId>com.qrcode</groupId>
             <artifactId>qrcode</artifactId>
@@ -278,16 +135,6 @@
             <scope>system</scope>
             <systemPath>${project.basedir}/libs/Qrcodeen.jar</systemPath>
         </dependency>
-        <!-- code end -->
-
-        <!-- media begin -->
-        <!-- thumbnailator -->
-        <dependency>
-            <groupId>net.coobird</groupId>
-            <artifactId>thumbnailator</artifactId>
-            <version>${thumbnailator.version}</version>
-        </dependency>
-
         <dependency>
             <groupId>org.bytedeco</groupId>
             <artifactId>javacv</artifactId>
@@ -339,65 +186,11 @@
                 </exclusion>
             </exclusions>
         </dependency>
-
-        <dependency>
-            <groupId>org.bytedeco</groupId>
-            <artifactId>javacv-platform</artifactId>
-            <version>${javacv.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.bytedeco.javacpp-presets</groupId>
-                    <artifactId>javacv</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.bytedeco.javacpp-presets</groupId>
-                    <artifactId>opencv-platform</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.bytedeco.javacpp-presets</groupId>
-                    <artifactId>tesseract-platform</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.bytedeco.javacpp-presets</groupId>
-                    <artifactId>leptonica-platform</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.bytedeco.javacpp-presets</groupId>
-                    <artifactId>flandmark-platform</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.bytedeco.javacpp-presets</groupId>
-                    <artifactId>artoolkitplus-platform</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.bytedeco.javacpp-presets</groupId>
-                    <artifactId>librealsense-platform</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.bytedeco.javacpp-presets</groupId>
-                    <artifactId>libfreenect2-platform</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.bytedeco.javacpp-presets</groupId>
-                    <artifactId>libfreenect-platform</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.bytedeco.javacpp-presets</groupId>
-                    <artifactId>libdc1394-platform</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.bytedeco.javacpp-presets</groupId>
-                    <artifactId>flycapture-platform</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
         <dependency>
             <groupId>net.sourceforge.tess4j</groupId>
             <artifactId>tess4j</artifactId>
             <version>${tess4j.version}</version>
         </dependency>
-
         <dependency>
             <groupId>com.opencv</groupId>
             <artifactId>opencv246</artifactId>
@@ -412,38 +205,26 @@
             <scope>system</scope>
             <systemPath>${project.basedir}/libs/opencv-330.jar</systemPath>
         </dependency>
-        <!-- media end -->
-
-        <!-- mail -->
         <dependency>
             <groupId>javax.mail</groupId>
             <artifactId>mail</artifactId>
             <version>${mail.version}</version>
         </dependency>
-
-        <!-- freemarker -->
         <dependency>
             <groupId>org.freemarker</groupId>
             <artifactId>freemarker</artifactId>
             <version>${freemarker.version}</version>
         </dependency>
-
-        <!-- xml -->
         <dependency>
             <groupId>dom4j</groupId>
             <artifactId>dom4j</artifactId>
             <version>${dom4j.version}</version>
         </dependency>
-
-        <!-- asm -->
         <dependency>
             <groupId>asm</groupId>
             <artifactId>asm</artifactId>
             <version>${asm.version}</version>
         </dependency>
-
-
-        <!-- junit -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -451,7 +232,6 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-
 
     <build>
         <finalName>javautils</finalName>
@@ -461,7 +241,6 @@
                 <includes>
                     <include>**/*.*</include>
                 </includes>
-
                 <filtering>false</filtering>
             </resource>
             <resource>
@@ -476,6 +255,4 @@
             </resource>
         </resources>
     </build>
-
-
 </project>
