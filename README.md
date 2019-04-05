@@ -6,7 +6,7 @@ JAVA工具集合
 ## 如何部署
 
  ```shell
- mvn clean install
+ mvn clean install -DskipTests
  ```
 
 ## 项目目录结构（v1.0.0）
