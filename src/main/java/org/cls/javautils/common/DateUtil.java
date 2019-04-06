@@ -1,5 +1,6 @@
 package org.cls.javautils.common;
 
+import org.apache.commons.lang.time.DateUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -10,14 +11,9 @@ import java.util.Calendar;
 import java.util.Date;
 
 /**
- * @Title: DateUtil
- * @Package com.wind.common
- * @Description: 日期工具类集合
- * @author wind
- * @date 2018/10/11 9:24
- * @version V1.0
+ * 日期工具类集合
  */
-public class DateUtil {
+public class DateUtil extends DateUtils {
 
     private static Logger logger = LoggerFactory.getLogger(DateUtil.class);
 
@@ -40,11 +36,12 @@ public class DateUtil {
 
     /**
      * 格式化字符串日期，转换成Date
-     * @param date  字符串日期
+     *
+     * @param date    字符串日期
      * @param pattern 默认 yyyy-MM-dd HH:mm:ss
      * @return
      */
-    public static Date parse(String date, String pattern){
+    public static Date parse(String date, String pattern) {
         String p = pattern == null ? DATE_TIME : pattern;
         DateFormat dateFormat = new SimpleDateFormat(p);
         Date d = null;
@@ -58,11 +55,12 @@ public class DateUtil {
 
     /**
      * 日期按照指定格式转换成字符串
-     * @param date  日期
+     *
+     * @param date    日期
      * @param pattern 默认 yyyy-MM-dd HH:mm:ss
      * @return
      */
-    public static String format(Date date, String pattern){
+    public static String format(Date date, String pattern) {
         DateFormat dateFormat = new SimpleDateFormat(pattern == null ? DATE_TIME : pattern);
         return dateFormat.format(date);
     }
@@ -70,10 +68,11 @@ public class DateUtil {
 
     /**
      * 获取日期
+     *
      * @param date
      * @return
      */
-    public static Date getDate(Date date){
+    public static Date getDate(Date date) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
         calendar.set(Calendar.HOUR_OF_DAY, 0);
@@ -86,10 +85,11 @@ public class DateUtil {
 
     /**
      * 获取星期
+     *
      * @param date
      * @return
      */
-    public static int getWeek(Date date){
+    public static int getWeek(Date date) {
         Calendar c = Calendar.getInstance();
         c.setTime(date);
         return c.get(Calendar.DAY_OF_WEEK) - 1;
@@ -98,11 +98,12 @@ public class DateUtil {
 
     /**
      * 返回当前时间day天之后（day>0）或day天之前（day<0）的时间
+     *
      * @param date 日期
      * @param day
      * @return
      */
-    public static Date addDay(Date date, int day){
+    public static Date addDay(Date date, int day) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
         calendar.add(Calendar.DAY_OF_MONTH, day);
@@ -138,30 +139,16 @@ public class DateUtil {
     }
 
     /**
-     * 计算两个日期之间的天数差
-     * @param start
-     * @param end
-     * @return
+     * 计算两个日期之间的毫秒数
+     *
+     * @param start 开始事件
+     * @param end   截止事件
+     * @return 毫秒
      */
-    public static double daysBetween(Date start, Date end) throws IllegalArgumentException{
-        if(start == null || end == null){
+    public static long between(Date start, Date end) throws IllegalArgumentException {
+        if (start == null || end == null) {
             throw new IllegalArgumentException("The date must not be null. start:" + start + ", end:" + end);
         }
-        long endTime = end.getTime();
-        long startTime = start.getTime();
-        return (endTime - startTime) / (DAY);
+        return end.getTime() - start.getTime();
     }
-
-
-
-    public static void main(String[] args) {
-        Date end = new Date();
-        System.out.println(format(end, DATE_STR));
-        Date start = parse("2018-08-03", DATE_STR);
-        System.out.println(start.getTime());
-        System.out.println(daysBetween(start, end));
-    }
-
-
-
 }
