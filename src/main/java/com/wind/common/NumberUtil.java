@@ -19,7 +19,7 @@ public class NumberUtil {
      * @return
      */
     public static double getDouble(double d, int newScale){
-        BigDecimal b = new BigDecimal(d);
+        BigDecimal b = BigDecimal.valueOf(d);
         return b.setScale(newScale, BigDecimal.ROUND_HALF_UP).doubleValue();
     }
 

@@ -143,9 +143,10 @@ public class DateUtil {
      * @param end
      * @return
      */
-    public static double daysBetween(Date start, Date end) throws IllegalArgumentException{
+    public static long daysBetween(Date start, Date end){
         if(start == null || end == null){
-            throw new IllegalArgumentException("The date must not be null. start:" + start + ", end:" + end);
+            logger.error("The date must not be null. start:" + start + ", end:" + end);
+            return 0;
         }
         long endTime = end.getTime();
         long startTime = start.getTime();

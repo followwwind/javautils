@@ -132,35 +132,21 @@ public class OkHttpUtil {
      */
     public static void down(Request request, String targetFile){
         ResponseBody responseBody = getBody(request);
-        InputStream in = null;
-        FileOutputStream out = null;
-        try {
-            in = responseBody.byteStream();
-            out = new FileOutputStream(targetFile, true);
-            byte[] bytes = new byte[1024];
-            int len;
-            while((len = in.read(bytes, 0, bytes.length)) != -1){
-                out.write(bytes, 0, len);
-            }
+        if(responseBody != null){
 
-            out.flush();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            if(out != null){
-                try {
-                    out.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
+            try(
+                InputStream in = responseBody.byteStream();
+                FileOutputStream out = new FileOutputStream(targetFile, true)
+            ) {
+                byte[] bytes = new byte[1024];
+                int len;
+                while((len = in.read(bytes, 0, bytes.length)) != -1){
+                    out.write(bytes, 0, len);
                 }
-            }
 
-            if(in != null){
-                try {
-                    in.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                out.flush();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
     }
@@ -214,10 +200,5 @@ public class OkHttpUtil {
                 ok.call(call, response);
             }
         });
-    }
-
-
-    public static void main(String[] args) {
-        
     }
 }
