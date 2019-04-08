@@ -29,6 +29,9 @@ public class DesUtil {
 
         try {
             Cipher cipher = init(Cipher.ENCRYPT_MODE, key);
+            if(cipher == null){
+                return null;
+            }
             // 加密，并把字节数组编码成字符串 sun.misc.BASE64Encoder不支持jdk9
             encryptedData = new sun.misc.BASE64Encoder().encode(cipher.doFinal(str.getBytes()));
         } catch (IllegalBlockSizeException e) {
@@ -50,6 +53,9 @@ public class DesUtil {
         String decryptedData = null;
         try {
             Cipher cipher = init(Cipher.DECRYPT_MODE, key);
+            if(cipher == null){
+                return null;
+            }
             // 把字符串解码为字节数组，并解密
             decryptedData = new String(cipher.doFinal(new sun.misc.BASE64Decoder().decodeBuffer(str)));
         } catch (IllegalBlockSizeException e) {
@@ -93,17 +99,4 @@ public class DesUtil {
         }
         return cipher;
     }
-
-    public static void main(String[] args) {
-        String key = "12345678";
-        String str = "world";
-
-        String enStr = encrypt(str, key);
-        System.out.println(enStr);
-
-        String deStr = decrypt(enStr, key);
-        System.out.println(deStr);
-    }
-
-
 }

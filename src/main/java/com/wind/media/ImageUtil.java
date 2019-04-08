@@ -127,22 +127,5 @@ public class ImageUtil {
             e.printStackTrace();
         }
     }
-
-    public static void main(String[] args) {
-//        String fileName = "src/main/resources/image/idcard.jpg";
-//        MatOfRect matRect = HighGuiUtil.detectFace(fileName);
-//        Rect rect = matRect.toArray()[0];
-//        String descImg = "src/main/resources/image/idcardbak.png";
-//        String descImg2 = "src/main/resources/image/idcardbak2.png";
-//        Rectangle r = new Rectangle(rect.x, rect.y, rect.width, rect.height);
-//        long s = System.currentTimeMillis();
-//        writeImage(new File(descImg), cutImage(new File(fileName), r));
-//        long e = System.currentTimeMillis();
-//        System.out.println(e - s);
-//        long s2 = System.currentTimeMillis();
-//        writeImage(new File(descImg2), cutImage2(new File(fileName), r));
-//        long e2 = System.currentTimeMillis();
-//        System.out.println(e2 - s2);
-    }
 }
 

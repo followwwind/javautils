@@ -102,12 +102,4 @@ public class Md5Util {
     public static String getMD5AndSalt(String str, String salt) {
         return getMD5Str(getMD5Str(str, MD5_KEY).concat(salt), MD5_KEY);
     }
-
-    public static void main(String[] args) {
-        /*String s = encrypt("hello", MD5_KEY);*/
-        String s = getMD5Str("hello", SHA_KEY);
-        System.out.println(s);
-        System.out.println(s.length());
-    }
-
 }

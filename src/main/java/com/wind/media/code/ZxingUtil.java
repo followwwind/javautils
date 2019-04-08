@@ -164,15 +164,4 @@ public class ZxingUtil {
         }
         return "";
     }
-
-    public static void main(String[] args) {
-        String target = "src/main/resources/image/code.png";
-        String content = "hello world";
-        int length = 300;
-        String logo = "src/main/resources/image/head.jpg";
-        int logoLength = 50;
-        genCode(content, length, Constants.IMAGE_PNG, logo, logoLength, target);
-        System.out.println(parseCode(target));
-    }
-
 }

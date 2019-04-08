@@ -205,13 +205,4 @@ public class ExcelUtil {
         }
         return wb;
     }
-
-
-    public static void main(String[] args) {
-//        String path = "E:\\doc\\导入收费记录模板.xlsx";
-        String path = "E:\\doc\\导入账单模板.xlsx";
-        int i = 0;
-        List<List<String>> list = readExcel(path, i);
-        System.out.println(list);
-    }
 }

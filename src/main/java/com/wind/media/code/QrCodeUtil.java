@@ -150,10 +150,4 @@ public class QrCodeUtil {
 
         return decodedData;
     }
-
-	public static void main(String[] args) {
-		System.out.println(parseCode("src/main/resources/image/code.png"));
-		/*String path = "src/main/resources/image/code2.png";
-		writeQRCode(path, getQRCodeImage("hello", null));*/
-	}
 }

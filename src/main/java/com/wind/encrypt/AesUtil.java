@@ -31,12 +31,11 @@ public class AesUtil {
 
         try {
             Cipher cipher = init(Cipher.ENCRYPT_MODE, key);
+            if(cipher == null){
+                return new byte[]{};
+            }
             bytes = cipher.doFinal(str.getBytes(Constants.UTF8));
-        } catch (IllegalBlockSizeException e) {
-            e.printStackTrace();
-        } catch (BadPaddingException e) {
-            e.printStackTrace();
-        } catch (UnsupportedEncodingException e) {
+        } catch (IllegalBlockSizeException|BadPaddingException|UnsupportedEncodingException e) {
             e.printStackTrace();
         }
 
@@ -53,12 +52,11 @@ public class AesUtil {
         String str = null;
         try {
             Cipher cipher = init(Cipher.DECRYPT_MODE, key);
+            if(cipher == null){
+                return null;
+            }
             str = new String(cipher.doFinal(bytes), Constants.UTF8);
-        } catch (IllegalBlockSizeException e) {
-            e.printStackTrace();
-        } catch (BadPaddingException e) {
-            e.printStackTrace();
-        } catch (UnsupportedEncodingException e) {
+        } catch (IllegalBlockSizeException|BadPaddingException|UnsupportedEncodingException e) {
             e.printStackTrace();
         }
 
@@ -78,23 +76,9 @@ public class AesUtil {
             cipher = Cipher.getInstance(AES_KEY);
             cipher.init(mode, new SecretKeySpec(kGen.generateKey().getEncoded(), AES_KEY));
 
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        } catch (NoSuchPaddingException e) {
-            e.printStackTrace();
-        } catch (InvalidKeyException e) {
+        } catch (NoSuchAlgorithmException|NoSuchPaddingException|InvalidKeyException e) {
             e.printStackTrace();
         }
         return cipher;
     }
-
-    public static void main(String[] args) {
-        String str = "hello world";
-        String key = "123";
-        byte[] bytes = encrypt(str, key);
-
-        String s = decrypt(bytes, key);
-        System.out.println(s);
-    }
-
 }

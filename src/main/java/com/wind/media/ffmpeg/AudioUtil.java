@@ -1,6 +1,5 @@
 package com.wind.media.ffmpeg;
 
-import org.bytedeco.javacpp.avcodec;
 import org.bytedeco.javacv.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -155,11 +154,4 @@ public class AudioUtil {
             }
         }
     }
-
-    public static void main(String[] args) {
-        AudioUtil.convert("东部信息.wav", "test.mp3", avcodec.AV_CODEC_ID_MP3,
-                8000, 16,1);
-    }
-
-
 }

@@ -31,8 +31,9 @@ public class GZipUtil {
      * @param target
      */
     public static void compress(File source, String target){
+        FileInputStream fis = null;
         try {
-            FileInputStream fis = new FileInputStream(source);
+            fis = new FileInputStream(source);
             File targetFile = new File(target);
             if(targetFile.isFile()){
                 System.err.println("target不能是文件，否则压缩失败");
@@ -43,6 +44,8 @@ public class GZipUtil {
             compress(fis, fos);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
+        } finally {
+            IoUtil.close(fis);
         }
     }
 
@@ -61,13 +64,16 @@ public class GZipUtil {
      * @param target
      */
     public static void uncompress(File source, String target){
+        FileInputStream fis = null;
         try {
-            FileInputStream fis = new FileInputStream(source);
+            fis = new FileInputStream(source);
             target += source.getName().replace(Constants.FILE_GZ, "");
             FileOutputStream fos = new FileOutputStream(target);
             uncompress(fis, fos);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
+        } finally {
+            IoUtil.close(fis);
         }
     }
 
@@ -78,9 +84,7 @@ public class GZipUtil {
      * @param out
      */
     private static void compress(InputStream in, OutputStream out){
-        GZIPOutputStream gos = null;
-        try {
-            gos = new GZIPOutputStream(out);
+        try(GZIPOutputStream gos = new GZIPOutputStream(out)) {
             int count;
             byte[] data = new byte[Constants.BUFFER_1024];
             while ((count = in.read(data, 0, data.length)) != -1) {
@@ -90,8 +94,6 @@ public class GZipUtil {
             gos.flush();
         } catch (IOException e) {
             e.printStackTrace();
-        } finally {
-            IoUtil.close(in, gos);
         }
     }
 
@@ -102,9 +104,7 @@ public class GZipUtil {
      * @param out
      */
     private static void uncompress(InputStream in, OutputStream out){
-        GZIPInputStream gis = null;
-        try {
-            gis = new GZIPInputStream(in);
+        try(GZIPInputStream gis = new GZIPInputStream(in)) {
             int count;
             byte[] data = new byte[Constants.BUFFER_1024];
             while ((count = gis.read(data, 0, Constants.BUFFER_1024)) != -1) {
@@ -112,22 +112,6 @@ public class GZipUtil {
             }
         } catch (IOException e) {
             e.printStackTrace();
-        } finally {
-            IoUtil.close(gis, out);
         }
     }
-
-
-
-
-    public static void main(String[] args) {
-        String source = "src/main/resources/image/head.jpg";
-        String target = "src/main/resources/";
-        compress(source, target);
-        uncompress(target + "head.jpg.gz", target);
-    }
-
-
-
-
 }

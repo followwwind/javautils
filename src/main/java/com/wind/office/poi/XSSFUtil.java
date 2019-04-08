@@ -116,11 +116,4 @@ public class XSSFUtil {
             lastContents += new String(ch, start, length);
         }
     }
-
-    public static void main(String[] args) throws Exception {
-        String path = "E:\\doc\\1.xlsx";
-        XSSFUtil example = new XSSFUtil();
-        example.processOneSheet(path);
-//        example.processAllSheets(args[0]);
-    }
 }

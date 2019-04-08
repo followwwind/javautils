@@ -73,13 +73,4 @@ public class Tess4jUtil {
         }
         return result;
     }
-
-    public static void main(String[] args) {
-        /*String path = "src/main/resources/image/text.png";
-        System.out.println(take(path));*/
-
-        String ch = "src/main/resources/image/ch.png";
-        System.out.println(take(ch, "src/main/resources/tessdata", Constants.CHI_SIM));
-    }
-
 }

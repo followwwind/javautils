@@ -27,7 +27,7 @@ public class HttpUrlUtil {
      * 解析url
      * @param url
      */
-    public static void parseUrl(String url){
+    public static void parseUrl(String url) {
         BufferedReader reader = null;
         try {
             URL u = new URL(url);
@@ -41,7 +41,7 @@ public class HttpUrlUtil {
 
             // 获得响应状态信息
             if (connection.getResponseCode() != HttpURLConnection.HTTP_OK) {
-                System.out.println("请求失败...");
+                System.out.println("request fail...");
                 return;
             }
 
@@ -54,13 +54,12 @@ public class HttpUrlUtil {
                 System.out.println(entry.getKey() + ":" + entry.getValue());
             }
 
-            System.out.println("响应内容如下：");
+            System.out.println("response body：");
             // 内容是文本，直接以缓冲字符流读取
             reader = new BufferedReader(new InputStreamReader(
                     connection.getInputStream(), Constants.UTF8));
             String data;
-            while ((data = reader.readLine()) != null)
-            {
+            while ((data = reader.readLine()) != null) {
                 System.out.println(data);
             }
         } catch (MalformedURLException e) {
@@ -71,10 +70,4 @@ public class HttpUrlUtil {
             IoUtil.close(reader);
         }
     }
-
-    public static void main(String[] args) {
-        String url = "http://api.douban.com/v2/movie/in_theaters";
-        parseUrl(url);
-    }
-
 }

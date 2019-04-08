@@ -152,17 +152,4 @@ public class DateUtil {
         long startTime = start.getTime();
         return (endTime - startTime) / (DAY);
     }
-
-
-
-    public static void main(String[] args) {
-        Date end = new Date();
-        System.out.println(format(end, DATE_STR));
-        Date start = parse("2018-08-03", DATE_STR);
-        System.out.println(start.getTime());
-        System.out.println(daysBetween(start, end));
-    }
-
-
-
 }

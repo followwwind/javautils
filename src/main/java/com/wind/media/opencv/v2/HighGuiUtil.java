@@ -94,12 +94,4 @@ public class HighGuiUtil {
         Imgproc.Canny(img, img, threshold, threshold * 3, 3, true);
         Highgui.imwrite(dstImg, img);
     }
-
-
-
-    public static void main(String[] args) {
-        String fileName = "src/main/resources/image/face.jpg";
-        String destName = "src/main/resources/image/face2.jpg";
-        drawRect(fileName, destName);
-    }
 }

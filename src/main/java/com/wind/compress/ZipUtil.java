@@ -129,16 +129,4 @@ public class ZipUtil {
         }
     }
 
-    public static void main(String[] args) {
-//        String source = "src/main/resources/image/head.jpg";
-//        String target = "src/main/resources/123.zip";
-//        zip(source, target);
-
-        String filePath = "src/main/resources/123.zip";
-        String targetPath = "E:/";
-
-        unzip(filePath, targetPath);
-
-    }
-
 }
