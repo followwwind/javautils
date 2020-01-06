@@ -23,8 +23,13 @@ public class FtlUtil {
      * @param freeMarker
      */
     public static void genCode(FreeMarker freeMarker){
-        try {
-            File dir = new File(freeMarker.getFileDir());
+        String fileDir = freeMarker.getFileDir();
+        String fileName = freeMarker.getFileName();
+        try(
+            OutputStream fos = new FileOutputStream( new File(fileDir, fileName));
+            Writer out = new OutputStreamWriter(fos)
+        ) {
+            File dir = new File(fileDir);
             boolean sign = true;
             if(!dir.exists()){
                 sign = dir.mkdirs();
@@ -36,16 +41,12 @@ public class FtlUtil {
                 cfg.setDefaultEncoding(Constants.UTF8);
                 cfg.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);
                 Template temp = cfg.getTemplate(freeMarker.getCfgName());
-
-                OutputStream fos = new FileOutputStream( new File(dir, freeMarker.getFileName()));
-                Writer out = new OutputStreamWriter(fos);
                 Map<String, Object> map = freeMarker.getMap();
                 if(map == null){
                     map = new HashMap<>(16);
                 }
                 temp.process(map, out);
                 fos.flush();
-                out.close();
             }
         } catch (IOException e) {
             e.printStackTrace();

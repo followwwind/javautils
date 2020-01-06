@@ -6,11 +6,15 @@ import java.util.Properties;
 import javax.activation.DataSource;
 
 /**
- * 邮件信息描述类
+ * @Title: Email
+ * @Package com.wind.network.email
+ * @Description: 邮件信息描述类
  * @author wind
- *
+ * @date 2020/1/6 10:00
+ * @version V1.0
  */
 public class Email {
+
 	/**配置session属性*/
 	private Properties props;
 	/**发送者*/
