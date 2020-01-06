@@ -3,7 +3,7 @@ java utils集合
 
 ## 项目目录结构:
 ### 1 com.wind.common
-常用工具类，包括常量定义，正则表达式工具类，字符串工具类，IO流关闭，java对象拷贝(待补充)
+常用工具类，包括常量定义，正则表达式工具类，字符串工具类，IO流关闭，java对象拷贝
 ### 2 com.wind.media
 tess4j工具类，ocr文字识别，以及opencv得身份证人脸提取, 音频，二维码
 ### 3 com.wind.encrypt
