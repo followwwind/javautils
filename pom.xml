@@ -39,7 +39,7 @@
         <thumbnailator.version>0.4.8</thumbnailator.version>
         <javacv.version>1.4.2</javacv.version>
         <zxing.version>3.3.0</zxing.version>
-        <poi.version>3.16</poi.version>
+        <poi.version>4.1.2</poi.version>
         <swagger.version>2.9.0</swagger.version>
         <xstream.version>1.4.7</xstream.version>
         <json-lib.version>2.4</json-lib.version>
